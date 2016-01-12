@@ -27,4 +27,4 @@ User.method.addToHistory = function(orderId){
     return this.thisUser();
 }
 
-var User = mongoose.model('User', UserSchema);
+mongoose.model('User', UserSchema);
