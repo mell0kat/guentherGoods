@@ -66,4 +66,7 @@ productSchema.methods.findSimilar = function() {
     }).exec();
 }
 
+// add method for adding items for when a seller adds an item
+// add method for updating inventory when user checks out
+
 mongoose.model('Product', productSchema);
