@@ -27,61 +27,61 @@ var seedUsers = function () {
 
     var users = [
         {
-            email: 'testing@fsa.com',
+            username: 'testing@fsa.com',
             password: 'password',
             name: 'Mr. Test'
         },
         {
-            email: 'obama@gmail.com',
+            username: 'obama@gmail.com',
             password: 'potus',
             name: 'You know me'
         },
         {
-            email: 'hello@gmail.com',
+            username: 'hello@gmail.com',
             password: 'hello',
             name: 'Katherine'
         },
         {
-            email: 'me@gmail.com',
+            username: 'me@gmail.com',
             password: 'mememe',
             name: 'Nick'
         },
         {
-            email: 'joe@fsa.org',
+            username: 'joe@fsa.org',
             password: 'puppyBowl',
             name: 'Joe dot JS',
             isAdmin: true
         },
         {
-            email: 'mrrobot@gmail.com',
+            username: 'mrrobot@gmail.com',
             password: '123456seven',
             name: 'Dave'
         },
         {
-            email: 'walmart@gmail.com',
+            username: 'walmart@gmail.com',
             password: 'walmart',
             name: 'Wally World',
             isSeller: true
         },
         {
-            email: 'god@gmail.com',
+            username: 'god@gmail.com',
             password: 'holyghost',
             name: 'Jesus',
             isSeller: true,
             isAdmin: true
         },
         {
-            email: 'mum@gmail.com',
+            username: 'mum@gmail.com',
             password: 'sunshine',
             name: 'Teresa'
         },
         {
-            email: 'cup@gmail.com',
+            username: 'cup@gmail.com',
             password: 'coffee',
             name: 'Coffee Cup'
         },
         {
-            email: 'chocolateraspberries@gmail.com',
+            username: 'chocolateraspberries@gmail.com',
             password: 'yumyum',
             name: 'Zeus'
         }

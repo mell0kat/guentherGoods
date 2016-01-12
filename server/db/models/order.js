@@ -8,7 +8,8 @@ var orderSchema = new mongoose.Schema({
         ref: 'ShoppingCart'
     },
     date: {
-        type: Date.now
+        type: Date,
+        default: Date.now
     },
     address: {
         type: String
