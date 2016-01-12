@@ -8,7 +8,7 @@ var SellerProfile = new Schema({
 });
 var UserSchema = new Schema({
     username: { type: String, required: true },
-    password: { type: String, required:true},
+    password: { type: String, required: true},
     name: { type: String, required: true},
     isSeller: Boolean,
     isAdmin: Boolean,
@@ -19,5 +19,12 @@ var UserSchema = new Schema({
     address: String
 
 });
+
+User.method.addToHistory = function(orderId){
+    var thisUser = this;
+    thisUser.history.push(orderId);
+    //ShoppingCart.create({}).then(newCart => thisUser.shoppingCart = newCart);
+    return this.thisUser();
+}
 
 var User = mongoose.model('User', UserSchema);
