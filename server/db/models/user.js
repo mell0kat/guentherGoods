@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
-
-var Schema = new mongoose.Schema;
+var Schema = mongoose.Schema;
+require('./product');
 
 var SellerProfile = new Schema({
     products: [{ type: Schema.Types.ObjectId, ref: 'Product'}],
@@ -8,7 +8,7 @@ var SellerProfile = new Schema({
 });
 var UserSchema = new Schema({
     username: { type: String, required: true },
-    password: { type: String, required:true},
+    password: { type: String, required: true},
     name: { type: String, required: true},
     isSeller: Boolean,
     isAdmin: Boolean,
@@ -20,4 +20,11 @@ var UserSchema = new Schema({
 
 });
 
-var User = mongoose.model('User', UserSchema);
+UserSchema.method.addToHistory = function(orderId){
+    var thisUser = this;
+    thisUser.history.push(orderId);
+    // ShoppingCart.create({}).then(newCart => thisUser.shoppingCart = newCart);
+    return this.thisUser();
+}
+
+mongoose.model('User', UserSchema);
