@@ -1,7 +1,10 @@
 var router = require('express').Router();
 var Product = require('mongoose').model('Product');
 
+module.exports = router;
+
 router.get('/', function(req, res, next ) {
+    console.log('hi');
     Product.find({})
     .then( products=> res.json(products))
 });

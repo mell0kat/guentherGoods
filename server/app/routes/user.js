@@ -1,6 +1,8 @@
 var router = require('express').Router();
 var User = require('mongoose').model('User');
 
+module.exports = router;
+
 router.get('/user/:id', function(req, res, next) {
 User.findOne({ _id: req.params.id })
 .then(function(user) {
