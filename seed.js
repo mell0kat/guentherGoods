@@ -22,6 +22,7 @@ var Promise = require('bluebird');
 var chalk = require('chalk');
 var connectToDb = require('./server/db');
 var User = Promise.promisifyAll(mongoose.model('User'));
+var Product = Promise.promisifyAll(mongoose.model('Product'));
 
 var seedUsers = function () {
 
@@ -88,20 +89,73 @@ var seedUsers = function () {
     ];
     return User.createAsync(users);
 };
+var seedProducts = function() {
+
+    var products = [
+        {
+        name: 'kittyRug',
+        price: 25,
+        category: 'Home Goods',
+        description: 'a soft place to stand',
+        quantity: 5,
+        tags: ['rug', 'cute']
+       },
+        {name: 'catmug',
+        price: 5,
+        category: 'Office',
+        description: 'ncahhdhf',
+        quantity: 3,
+        tags: ['mug', 'cute']
+       },
+        {name: 'cat furniture',
+        price: 25,
+        category: 'Home Goods',
+        description: 'a sddf',
+        quantity: 5,
+        tags: ['bed', 'utile']
+       },
+        {name: 'catLeggings',
+        price: 100,
+        category: 'Apparel',
+        description: 'super chic',
+        quantity: 1,
+        tags: ['fetch']
+       }
+       ]
+    return Product.createAsync(products);
+
+};
 
 connectToDb.then(function () {
-    User.findAsync({}).then(function (users) {
+    return User.findAsync({}).then(function (users) {
         if (users.length === 0) {
             return seedUsers();
         } else {
             console.log(chalk.magenta('Seems to already be user data, exiting!'));
+        }
+    })
+    .then(function () {
+        console.log(chalk.green('Seeding users successful!'));
+        // process.kill(0);
+    }).catch(function (err) {
+        console.error(err, 'you have an error');
+        // process.kill(1);
+    })
+})
+.then(function(){
+    Product.findAsync({}).then(function (products) {
+        if (products.length === 0) {
+            return seedProducts();
+        } else {
+            console.log(chalk.magenta('Seems to already be product data, exiting!'));
             process.kill(0);
         }
-    }).then(function () {
-        console.log(chalk.green('Seed successful!'));
+    })
+    .then(function () {
+        console.log(chalk.green('Seeding products successful!'));
         process.kill(0);
     }).catch(function (err) {
         console.error(err);
         process.kill(1);
-    });
-});
+    })
+})

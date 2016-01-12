@@ -1,6 +1,7 @@
 var router = require('express').Router();
 var User = require('mongoose').model('User');
 
+
 // get all users
 router.get('/', function(req, res, next) {
     User.find({})
