@@ -16,6 +16,7 @@ var cartSchema = new mongoose.Schema({
     }]
 });
 
+
 cartSchema.methods.addToCart = function(item) {
     this.items.push(item);
     this.save();

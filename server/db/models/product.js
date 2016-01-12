@@ -37,7 +37,7 @@ var productSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }
-})
+});
 
 productSchema.virtual('inStock').get(function() {
     return this.quantity > 0;
@@ -45,7 +45,7 @@ productSchema.virtual('inStock').get(function() {
 
 productSchema.virtual('snippet').get(function() {
     return this.description.slice(0,23) + "...";
-})
+});
 
 productSchema.statics.findByTag = function(tag) {
     return Product.find({
@@ -53,7 +53,7 @@ productSchema.statics.findByTag = function(tag) {
             $in: [tag]
         }
     }).exec();
-}
+};
 
 productSchema.methods.findSimilar = function() {
     return Product.find({
@@ -64,7 +64,7 @@ productSchema.methods.findSimilar = function() {
             $ne: this._id
         }
     }).exec();
-}
+};
 
 // add method for adding items for when a seller adds an item
 // add method for updating inventory when user checks out
