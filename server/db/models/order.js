@@ -27,12 +27,12 @@ var orderSchema = new mongoose.Schema({
 
 orderSchema.methods.markAsPaid = function () {
     this.status = 'paid';
-    this.save();
+    return this.save();
 };
 
 orderSchema.methods.markAsShipped = function () {
     this.status = 'shipped';
-    this.save();
+    return this.save();
 };
 
 // after marking an order as paid we need to add it to that user's history
