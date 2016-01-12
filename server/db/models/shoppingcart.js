@@ -19,18 +19,18 @@ var cartSchema = new mongoose.Schema({
 
 cartSchema.methods.addToCart = function(item) {
     this.items.push(item);
-    this.save();
+    return this.save();
 };
 
 cartSchema.methods.updateQuantity = function(item, newQuantity) {
     this.items[item].quantity = newQuantity;
-    this.save();
+    return this.save();
 };
 
 cartSchema.methods.removeItem = function(item) {
     var idx = this.items.indexOf(item);
     this.items.splice(idx, 1);
-    this.save();
+    return this.save();
 };
 
 cartSchema.methods.checkoutCart = function() {
