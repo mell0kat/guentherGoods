@@ -36,6 +36,10 @@ var productSchema = new mongoose.Schema({
     seller: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
+    },
+    size: {
+        type: String,
+        enum: ['S','M','L']
     }
 });
 
