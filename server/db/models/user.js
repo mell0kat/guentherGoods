@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
-
-var Schema = new mongoose.Schema;
+var Schema = mongoose.Schema;
+require('./product');
 
 var SellerProfile = new Schema({
     products: [{ type: Schema.Types.ObjectId, ref: 'Product'}],
@@ -20,10 +20,10 @@ var UserSchema = new Schema({
 
 });
 
-User.method.addToHistory = function(orderId){
+UserSchema.method.addToHistory = function(orderId){
     var thisUser = this;
     thisUser.history.push(orderId);
-    //ShoppingCart.create({}).then(newCart => thisUser.shoppingCart = newCart);
+    // ShoppingCart.create({}).then(newCart => thisUser.shoppingCart = newCart);
     return this.thisUser();
 }
 
