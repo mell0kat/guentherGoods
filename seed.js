@@ -143,7 +143,6 @@ connectToDb.then(function () {
     })
 })
 .then(function(){
-    console.log("hi");
     Product.findAsync({}).then(function (products) {
         if (products.length === 0) {
             return seedProducts();
