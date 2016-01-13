@@ -5,5 +5,6 @@ require('./user');
 require('./product');
 require('./shoppingcart');
 require('./order');
+require('./review');
 
 
