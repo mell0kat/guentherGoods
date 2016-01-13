@@ -3,7 +3,15 @@
         <div class="navbar-header">
             <fullstack-logo></fullstack-logo>
         </div>
-        <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Canz we search for teh anything?" aria-describedby="basic-addon2">
+            <span class="input-group-addon" id="basic-addon2">Search</span>
+        </div>
+        <div class="float-right" ng-show="!user">
+            <div class="user-settings" ng-show="user">User Settings</div>
+            <button class="btn btn-primary" ui-sref="#">Sign Up</button>
+            <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
+        </div>
         <div ng-show="user" class="welcome">
             <span>Welcome, {{ user.email }}!</span>
             <a ng-click="logout()">Logout</a>
