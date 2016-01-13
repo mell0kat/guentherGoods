@@ -21,7 +21,6 @@ router.get('/detail/:productId', function(req, res, next) {
     Product.findById(req.params.productId)
     .populate('reviews')
     .then( product => {
-        console.log("MEOW", product);
         if (!product) res.sendStatus(404);
         else res.json(product);
     }).then(null, function(err) {
@@ -44,17 +43,17 @@ router.put('/detail/:productId', function(req, res, next) {
 
 router.delete('/detail/:productId', function(req, res, next) {
     Product.remove( { _id: req.params.productId })
-    .then( deletedProduct => res.status(204).send('Product successfully deleted! MEOW!'))
+    .then( () => res.status(204).send('Product successfully deleted! MEOW!'))
     .then(null, next);
 });
 
 router.post('/detail/:productId/reviews', function(req, res, next) {
     Review.create(req.body)
     .then(function (review) {
-        var review = review;
+        var reviewToAdd = review;
         return Product.findById(req.params.productId)
         .then(function(product) {
-            product.reviews.push(review._id);
+            product.reviews.push(reviewToAdd._id);
             return product.save();
         })
     })
