@@ -3,12 +3,23 @@
         <div class="row">
             <div class="col-xs-6" id="productPhoto"><img src="http://i1382.photobucket.com/albums/ah279/npalenchar/products/apartment/ovenmitts_zps1zlumkqn.png"/></div>
             <div id="productSummary" class="col-xs-6">
-                <p>{{product.price}}</p>
-                <input>Quantity</input>
-                <select>Size</select>
-                <p>{{product.description}}</p>
+                <p>Price: {{product.price | currency }}</p>
+                <div class="form-group">
+                    <label>Quantity</label>
+                    <input ng-model="order.quantity"></input>
+                </div>
+                <div class="form-group">
+                    <label>size</label>
+                    <select ng-model="order.size">
+                        <option>S</option>
+                        <option>M</option>
+                        <option>L</option>
+                    </select>
+                </div>
+                <p>Description: {{product.description}}</p>
                 <button>Add to Cart</button>
             </div>
         </div>
     <div id="detailsAndReviews"></div>
+    {{order}}
 </div>

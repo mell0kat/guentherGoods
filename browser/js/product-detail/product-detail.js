@@ -3,11 +3,12 @@ app.config(function($stateProvider) {
         url: '/productDetail/:id',
         templateUrl: 'js/product-detail/product-detail.html',
         controller: function($scope, product) {
-            $scope.product = product.data;
+            $scope.product = product;
+            $scope.order = {};
         },
         resolve : {
-            product: function($http, $stateParams) {
-                return $http.get('/api/products/detail/' + $stateParams.id)
+            product: function($http, $stateParams, ProductsFactory) {
+                return ProductsFactory.fetchProductById($stateParams.id)
             }
 
         }
