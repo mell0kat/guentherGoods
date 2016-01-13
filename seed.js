@@ -23,6 +23,7 @@ var chalk = require('chalk');
 var connectToDb = require('./server/db');
 var User = Promise.promisifyAll(mongoose.model('User'));
 var Product = Promise.promisifyAll(mongoose.model('Product'));
+var Review = Promise.promisifyAll(mongoose.model('Review'));
 
 var seedUsers = function () {
 
@@ -112,7 +113,8 @@ var seedProducts = function() {
         category: 'Home Goods',
         description: 'a sddf',
         quantity: 5,
-        tags: ['bed', 'utile']
+        tags: ['bed', 'utile'],
+        reviews: ['56967b3903d8b51b27771d4d']
        },
         {name: 'catLeggings',
         price: 100,
@@ -125,6 +127,26 @@ var seedProducts = function() {
     return Product.createAsync(products);
 
 };
+var seedReviews = function() {
+
+    var reviews = [
+        {
+        text: 'Kinda disappointing',
+        stars: 4,
+        user: '56957789130e61b223dd4e7a',
+        product: '56967b3903d8b51b27771d4d'
+       },
+        {
+        text: 'So awesome',
+        stars: 5,
+        user: '56957789130e61b223dd4e84',
+        product: '56967b3903d8b51b27771d4b'
+       }
+       ]
+    return Review.createAsync(reviews);
+
+};
+
 
 connectToDb.then(function () {
     return User.findAsync({}).then(function (users) {
@@ -148,11 +170,25 @@ connectToDb.then(function () {
             return seedProducts();
         } else {
             console.log(chalk.magenta('Seems to already be product data, exiting!'));
-            process.kill(0);
         }
     })
     .then(function () {
         console.log(chalk.green('Seeding products successful!'));
+    }).catch(function (err) {
+        console.error(err);
+    })
+})
+.then(function(){
+    Review.findAsync({}).then(function (reviews) {
+        if (reviews.length === 0) {
+            return seedReviews();
+        } else {
+            console.log(chalk.magenta('Seems to already be review data, exiting!'));
+            process.kill(0);
+        }
+    })
+    .then(function () {
+        console.log(chalk.green('Seeding reviews successful!'));
         process.kill(0);
     }).catch(function (err) {
         console.error(err);
