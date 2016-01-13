@@ -124,6 +124,13 @@ var seedProducts = function() {
         description: 'super chic',
         quantity: 1,
         tags: ['fetch']
+       },
+        {name: 'Cat Oven Mits',
+        price: 23,
+        category: 'apartment',
+        description: 'so useful',
+        quantity: 10,
+        tags: ['fetch']
        }
        ]
     return Product.createAsync(products);
