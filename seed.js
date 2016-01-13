@@ -24,6 +24,7 @@ var connectToDb = require('./server/db');
 var User = Promise.promisifyAll(mongoose.model('User'));
 var Product = Promise.promisifyAll(mongoose.model('Product'));
 var Review = Promise.promisifyAll(mongoose.model('Review'));
+var ShoppingCart = Promise.promisifyAll(mongoose.model('ShoppingCart'));
 
 var seedUsers = function () {
 
@@ -99,7 +100,8 @@ var seedProducts = function() {
         category: 'Home Goods',
         description: 'a soft place to stand',
         quantity: 5,
-        tags: ['rug', 'cute']
+        tags: ['rug', 'cute'],
+        reviews: ["5696844abf2de4ad6c740107", "5696844abf2de4ad6c740108"]
        },
         {name: 'catmug',
         price: 5,
@@ -134,18 +136,54 @@ var seedReviews = function() {
         text: 'Kinda disappointing',
         stars: 4,
         user: '56957789130e61b223dd4e7a',
-        product: '56967b3903d8b51b27771d4d'
+        product: '569585a718e0a3955bdca5ae'
        },
         {
         text: 'So awesome',
         stars: 5,
         user: '56957789130e61b223dd4e84',
-        product: '56967b3903d8b51b27771d4b'
+        product: '569585a718e0a3955bdca5ae'
        }
        ]
     return Review.createAsync(reviews);
 
 };
+
+var seedCart = function() {
+    var cart = [
+        {
+            items: [
+                {
+                    //kitty rug
+                    quantity: 5,
+                    price: 25,
+                    item: '569585a718e0a3955bdca5ae'
+                },
+                {
+                    quantity: 3,
+                    price: 5,
+                    item: '569585a718e0a3955bdca5af'
+                },
+            ]
+        },
+        {
+            items: [
+                {   //cat furniture
+                    quantity: 3,
+                    price: 25,
+                    item: '569585a718e0a3955bdca5b0'
+                },
+                {   //cat leggings
+                    quantity: 2,
+                    price: 100,
+                    item: '569585a718e0a3955bdca5b1'
+                }
+            ]
+        }
+        ]
+    return ShoppingCart.createAsync(cart);
+
+}
 
 
 connectToDb.then(function () {
@@ -184,11 +222,26 @@ connectToDb.then(function () {
             return seedReviews();
         } else {
             console.log(chalk.magenta('Seems to already be review data, exiting!'));
-            process.kill(0);
         }
     })
     .then(function () {
         console.log(chalk.green('Seeding reviews successful!'));
+
+    }).catch(function (err) {
+        console.error(err);
+    })
+})
+.then(function(){
+    ShoppingCart.findAsync({}).then(function (cart) {
+        if (cart.length === 0) {
+            return seedCart();
+        } else {
+            console.log(chalk.magenta('Seems to already be shopping cart data, exiting!'));
+            process.kill(0);
+        }
+    })
+    .then(function () {
+        console.log(chalk.green('Seeding cart successful!'));
         process.kill(0);
     }).catch(function (err) {
         console.error(err);

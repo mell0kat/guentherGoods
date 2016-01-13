@@ -11,8 +11,10 @@ var cartSchema = new mongoose.Schema({
         price: {
             type: Number
         },
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product'
+        item: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Product'
+        }
     }]
 });
 
