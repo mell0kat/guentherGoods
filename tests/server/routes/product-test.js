@@ -22,26 +22,9 @@ describe('Product Route', function () {
         clearDB(done);
     });
 
-    // describe('Unauthenticated request', function () {
-
-    //     var guestAgent;
-
-    //     beforeEach('Create guest agent', function () {
-    //         guestAgent = supertest.agent(app);
-    //     });
-
-    //     it('should get a 401 response', function (done) {
-    //         guestAgent.get('/api/members/secret-stash')
-    //             .expect(401)
-    //             .end(done);
-    //     });
-
-    // });
-
     describe('Product route', function () {
         var productRoutes;
         var productId;
-        var secondProductId;
 
         var productInfo = {
             name: 'kittyRug',
@@ -97,7 +80,7 @@ describe('Product Route', function () {
         it('should return 404 status code if invalid product requested', function (done) {
             productRoutes.get('/api/products/detail/' + '2387498jndfegjbsdf')//'5696c7e6f5a201cd7c2aab59')
             .expect(404)
-            .end(function (err, response) {
+            .end(function (err) {
                 if (err) throw new Error(err);
                 done();
             });
