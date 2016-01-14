@@ -7,5 +7,10 @@ app.factory('UserFactory', function ($http) {
             return response.data;
         });
     };
+
+    UserFactory.fetchAll = function() {
+        return $http.get('/api/users/')
+        .then(response => response.data);
+    };
     return UserFactory;
 });
