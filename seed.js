@@ -30,62 +30,67 @@ var seedUsers = function () {
 
     var users = [
         {
-            username: 'testing@fsa.com',
+            email: 'testing@fsa.com',
             password: 'password',
             name: 'Mr. Test'
         },
         {
-            username: 'obama@gmail.com',
+            email: 'obama@gmail.com',
             password: 'potus',
             name: 'You know me'
         },
         {
-            username: 'hello@gmail.com',
+            email: 'hello@gmail.com',
             password: 'hello',
             name: 'Katherine'
         },
         {
-            username: 'me@gmail.com',
+            email: 'me@gmail.com',
             password: 'mememe',
             name: 'Nick'
         },
         {
-            username: 'joe@fsa.org',
+            email: 'joe@fsa.org',
             password: 'puppyBowl',
             name: 'Joe dot JS',
             isAdmin: true
         },
         {
-            username: 'mrrobot@gmail.com',
+            email: 'mrrobot@gmail.com',
             password: '123456seven',
             name: 'Dave'
         },
         {
-            username: 'walmart@gmail.com',
+            email: 'walmart@gmail.com',
             password: 'walmart',
             name: 'Wally World',
             isSeller: true
         },
         {
-            username: 'god@gmail.com',
+            email: 'god@gmail.com',
             password: 'holyghost',
             name: 'Jesus',
             isSeller: true,
             isAdmin: true
         },
         {
-            username: 'mum@gmail.com',
+            email: 'mum@gmail.com',
             password: 'sunshine',
             name: 'Teresa'
         },
         {
-            username: 'cup@gmail.com',
+            email: 'cup@gmail.com',
             password: 'coffee',
             name: 'Coffee Cup'
         },
         {
-            username: 'chocolateraspberries@gmail.com',
+            email: 'chocolateraspberries@gmail.com',
             password: 'yumyum',
+            name: 'Zeus'
+        },
+        {
+            email: 'obama@gmail.com',
+            password: 'potus',
             name: 'Zeus'
         }
     ];
