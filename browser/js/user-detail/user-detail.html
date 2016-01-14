@@ -1,1 +1,27 @@
-IT'S LOADING
+<div class="container">
+        <h2>{{user.name}}</h2>
+        <div class="row">
+            <div id="userSummary" class="col-xs-6">
+                <p>{{user.name}} - {{user.username}}</p>
+                <p>Account type:</p>
+                <ul>
+                    <li>isSeller?: {{user.isSeller}}</li>
+                    <li>isAdmin?: {{user.isAdmin}}</li>
+                </ul>
+                <p>Cart contents:</p>
+                <ul ng-repeat="item in user.shoppingCart">
+                    <li>{{item}}</li>
+                </ul>
+                <p>User reviews:</p>
+                <ul ng-repeat="review in user.reviews">
+                    <li>{{review}}</li>
+                </ul>
+                <p>User history</p>
+                <ul ng-repeat="order in user.history">
+                    <li>{{order}}</li>
+                </ul>
+            </div>
+        </div>
+    <div id="detailsAndReviews"></div>
+    {{order}}
+</div>
