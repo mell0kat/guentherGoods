@@ -1,5 +1,6 @@
 app.factory('ProductsFactory', function ($http) {
-    var ProductsFactory = {};
+
+	var ProductsFactory = {};
 
     ProductsFactory.fetchProductById = function(id){
         $http.get('/api/products/detail/' + id)
@@ -15,6 +16,8 @@ app.factory('ProductsFactory', function ($http) {
         });
     };
     return ProductsFactory;
-});
+
+})
+
 
 

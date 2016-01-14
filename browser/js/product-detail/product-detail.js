@@ -7,7 +7,7 @@ app.config(function($stateProvider) {
             $scope.order = {};
         },
         resolve : {
-            product: function($http, $stateParams, ProductsFactory) {
+            product: function($stateParams, ProductsFactory) {
                 return ProductsFactory.fetchProductById($stateParams.id);
             }
 
