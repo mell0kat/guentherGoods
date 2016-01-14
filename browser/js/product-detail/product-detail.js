@@ -8,6 +8,7 @@ app.config(function($stateProvider) {
         },
         resolve : {
             product: function($stateParams, ProductsFactory) {
+                console.log($stateParams.id)
                 return ProductsFactory.fetchProductById($stateParams.id);
             }
 
