@@ -4,9 +4,9 @@ app.factory('ProductsFactory', function ($http) {
         $http.get('/api/products/detail/' + id)
         .then(function(response){
             return response.data;
-        })
-    }
+        });
+    };
     return ProductsFactory;
-}
+});
 
 
