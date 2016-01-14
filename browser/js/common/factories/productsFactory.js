@@ -7,6 +7,6 @@ app.factory('ProductsFactory', function ($http) {
         })
     }
     return ProductsFactory;
-}
+})
 
 
