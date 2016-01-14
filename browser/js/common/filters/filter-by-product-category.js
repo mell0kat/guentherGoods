@@ -13,3 +13,4 @@ app.filter('filterByCategory', function() {
 
     }
 })
+
