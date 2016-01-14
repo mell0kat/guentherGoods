@@ -4,11 +4,10 @@ app.config(function($stateProvider) {
         url: '/userdetail/:id',
         controller: function($scope, user){
             $scope.user = user;
-            console.log("hi karen", user);
         },
         resolve: {
             user: function(UserFactory, $stateParams){
-                return UserFactory.FetchUserById($stateParams.id);
+                return UserFactory.fetchUserById($stateParams.id);
             }
         }
 
