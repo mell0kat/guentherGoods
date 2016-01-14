@@ -25,12 +25,12 @@ describe('User routes', function () {
 
     var testUser1 = {
             name: 'Matthew Patel',
-            username: 'EvilExNum1',
+            email: 'EvilExNum1@gmail.com',
             password: 'hipsterdeamonchicks'
         },
         testUser2 = {
             name: 'Johnny Test',
-            username: 'jtest',
+            email: 'jtest@gmail.com',
             password: 'seesawyolo',
         },
         testUser1Id,
@@ -65,36 +65,26 @@ describe('User routes', function () {
     });
 
     it('should get a single user', function (done) {
-        console.log()
-        console.log(testUser1Id);
-        userRoutes.get('api/users/' + testUser1Id)
+        userRoutes.get('/api/users/' + testUser1Id)
             .expect(200)
             .end(function (err, response) {
                 console.log("RES:", response);
                 console.log("ERR:",err);
                 expect(response.body).to.be.an('object');
-                expect(response.body.username).to.equal('EvilExNum1');
+                expect(response.body.email).to.equal('EvilExNum1');
                 expect(response.body.password).to.equal('hipsterdeamonchicks');
+                done();
             });
     });
-
-    //it('should return 404 if a user can\'t be found', function(done){
-    //    userRoutes.get('api/user/2387498jndfegjbsdf')
-    //    .expect(404)
-    //    .end(function(err){
-    //        if (err) throw new Error(err);
-    //        done();
-    //    });
-    //});
 
     it('should create a user', function(done){
         var newUserId;
 
-        userRoutes.post('api/users')
+        userRoutes.post('/api/users')
         .send({
             name: 'Julius Caesar',
-            username: 'cantbestabbed',
-            passwowrd: 'legioX'
+            email: 'cantbestabbed',
+            password: 'legioX'
         })
         .expect(201)
         .end(function(err, response){
@@ -103,22 +93,56 @@ describe('User routes', function () {
             newUserId = response.body._id;
 
             userRoutes.get('/api/users/' + newUserId)
+            .expect(200)
             .end(function(err, response){
                 expect(response.body._id).to.equal(newUserId);
                 expect(response.body.name).to.equal('Julius Caesar');
-                expect(response.body.username).to.equal('cantbestabbed');
+                expect(response.body.email).to.equal('cantbestabbed');
                 done();
             });
         });
     });
 
     it('should not create a user if validation fails', function(done){
-        userRoutes.post('api/users')
+        userRoutes.post('/api/users')
         .send(invalidUser)
-        .end(function(err, response){
-
-        })
+        .expect(400)
+        .end(function(err){
+            if (err) throw new Error(err);
+            done();
+        });
     });
 
+    it('can modify a user', function(done){
+        userRoutes.put('/api/users/'+testUser1Id)
+        .send({ name: 'Lucas Lee',
+                email: 'EvilExNum2'
+        })
+        .expect(200)
+        .end(function(err){
+            if (err) throw new Error(err);
+            User.findOne({ _id: testUser1Id} )
+            .then(function(user){
+                expect(user.name).to.equal('Lucas Lee');
+                expect(user.email).to.equal('EvilExNum2');
+                done();
+            })
+            .then(null, done);
+        });
+    });
+
+    it('can delete a user', function(done){
+        userRoutes.delete('/api/users/'+testUser1Id)
+        .expect(204)
+        .end(function(err, response){
+            if(err) throw new Error(err);
+            User.findOne({ _id: testUser1Id })
+                .then(function(result){
+                    expect(result).to.not.be.ok;
+                    done();
+                })
+                .then(null, done);
+        });
+    });
 });
 

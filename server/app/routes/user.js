@@ -2,7 +2,7 @@ var router = require('express').Router();
 var User = require('mongoose').model('User');
 
 // get all users
-router.get('/', function (req, res, next) {
+router.get('/', function (req, res) {
     User.find({})
         .then(function (users) {
             res.status(200).send(users);
@@ -14,6 +14,7 @@ router.get('/:id', function (req, res, next) {
     User.findOne({_id: req.params.id})
         .populate('reviews')
         .then(function (user) {
+            console.log('[routes/user] found user:', user);
             if (!user) res.status(404).send('User not found!');
             else res.status(200).send(user);
         })
@@ -23,8 +24,12 @@ router.get('/:id', function (req, res, next) {
 // create a new user
 router.post('/', function (req, res, next) {
     User.create(req.body)
-        .then(createdUser => res.status(201).send('User was created \n' + createdUser))
-        .then(null, next);
+        .then(createdUser => res.status(201).send(createdUser))
+        .then(null, function(error){
+            error.status = 400;
+            error.message = "Bad request";
+            next(error);
+        });
 });
 
 // update an existing user
@@ -37,7 +42,7 @@ router.put('/:id', function (req, res, next) {
 // delete a user
 router.delete('/:id', function (req, res, next) {
     User.remove({_id: req.params.id})
-        .then(deletedUser => res.status(200).send('User successfully deleted \n' + deletedUser))
+        .then(deletedUser => res.status(204).send(deletedUser))
         .then(null, next);
 });
 
