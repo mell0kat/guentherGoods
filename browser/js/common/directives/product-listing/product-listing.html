@@ -1,5 +1,5 @@
 <div id="photo-plus-info">
-
+	<a ui-sref="productDetail({id: product._id})">
     <div >
         <img src="http://i1382.photobucket.com/albums/ah279/npalenchar/products/apartment/ovenmitts_zps1zlumkqn.png"/>
     </div>
@@ -9,6 +9,7 @@
         <div class="col-md-3">{{product.price | currency}}</div>
         <div class="col-md-12">{{product.description | limitTo: 200}}...</div>   
     </div>
+	</a>
 
 </div>
 
