@@ -1,1 +1,27 @@
-<h2> Created Product Will Go Here</h2>
+<div>
+  <form novalidate class="simple-form">
+    Name: <input type="text" ng-model="product.name" /><br />
+    Price: <input type="text" ng-model="product.price" /><br />
+    Description: <input type="text" ng-model="product.description"/>
+    Reviews: <input type="text" ng-model="product.reviews" /><br />
+    Tags: <input type="text" ng-model="product.tags" /><br />
+    Quantity: <input type="text" ng-model="product.quantity" /><br />
+    Category: <input type="text" ng-model="product.category" /><br />
+    <button ng-click = create(product)></button>
+    {{product}}
+  </form>
+</div>
+
+<!--
+"_id": ObjectId("5697f775235bb79213ccb1ee"),
+"name": "Cat Oven Mits",
+"price": 23,
+"description": "so useful",
+"reviews": [ ],
+"tags": [
+  "fetch"
+],
+"quantity": 10,
+"category": [
+  "apartment"
+], -->

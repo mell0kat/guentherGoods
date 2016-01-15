@@ -16,8 +16,8 @@ app.factory('ProductsFactory', function ($http) {
         });
     };
 
-    ProductsFactory.createOne = function() {
-        return $http.post('/api/products')
+    ProductsFactory.createOne = function(product) {
+        return $http.post('/api/products', product)
         .then(function(response){
             console.log(response.data)
         })
