@@ -19,7 +19,14 @@ app.factory('ProductsFactory', function ($http) {
     ProductsFactory.createOne = function(product) {
         return $http.post('/api/products', product)
         .then(function(response){
-            console.log(response.data)
+            return response.data;
+        })
+    };
+
+    ProductsFactory.fetchCategories = function() {
+        return $http.get('/api/products/categories')
+        .then(function(response){
+            return response.data;
         })
     }
     return ProductsFactory;

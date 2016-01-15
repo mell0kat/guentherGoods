@@ -1,6 +1,7 @@
 var router = require('express').Router();
 var Product = require('mongoose').model('Product');
 var Review = require('mongoose').model('Review');
+var Category = require('mongoose').model('Category');
 
 module.exports = router;
 
@@ -16,6 +17,13 @@ router.get('/categories/:category', function(req, res, next) {
     .then(null, next);
 
 });
+
+router.get('/categories', function(req, res, next) {
+    console.log("in categories route in products route");
+    Category.find({})
+    .then( categoriesFound => res.json(categoriesFound) )
+    .then(null, next)
+})
 
 router.get('/:productId', function(req, res, next) {
     Product.findById(req.params.productId)
