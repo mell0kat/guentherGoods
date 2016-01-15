@@ -15,6 +15,13 @@ app.factory('ProductsFactory', function ($http) {
             return response.data;
         });
     };
+
+    ProductsFactory.createOne = function() {
+        return $http.post('/api/products')
+        .then(function(response){
+            console.log(response.data)
+        })
+    }
     return ProductsFactory;
 
 })
