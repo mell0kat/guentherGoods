@@ -5,13 +5,13 @@ app.config(function($stateProvider) {
         controller: function($scope, ProductsFactory, categories) {
             $scope.categories = categories;
             $scope.create = function(product) {
-                console.log(product, "this is the product")
+                product.tags = ProductsFactory.tagsParser(product.tags);
+                product.category = product.category._id;
                return ProductsFactory.createOne(product);
             }
         },
         resolve: {
             categories: function($http, ProductsFactory) {
-                console.log("in scope.categories")
                 return ProductsFactory.fetchCategories();
             }
         }

@@ -2,6 +2,10 @@ app.factory('ProductsFactory', function ($http) {
 
 	var ProductsFactory = {};
 
+   ProductsFactory.tagsParser = function(string) {
+        return string.split(",");
+    };
+
     ProductsFactory.fetchProductById = function(id){
         $http.get('/api/products/' + id)
         .then(function(response){
@@ -29,6 +33,7 @@ app.factory('ProductsFactory', function ($http) {
             return response.data;
         })
     }
+
     return ProductsFactory;
 
 });

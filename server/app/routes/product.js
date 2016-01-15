@@ -19,7 +19,6 @@ router.get('/categories/:category', function(req, res, next) {
 });
 
 router.get('/categories', function(req, res, next) {
-    console.log("in categories route in products route");
     Category.find({})
     .then( categoriesFound => res.json(categoriesFound) )
     .then(null, next)

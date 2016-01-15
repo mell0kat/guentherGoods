@@ -1,11 +1,11 @@
-<div>
+<div id="productCreateForm">
   <form novalidate class="simple-form">
-    Name: <input type="text" ng-model="product.name" /><br />
-    Price: <input type="number" ng-model="product.price" /><br />
-    Description: <input type="text" ng-model="product.description"/></br>
-    Tags: <input type="text" ng-model="product.tags" /><br />
-    Quantity: <input type="text" ng-model="product.quantity" /><br />
-    Category: <select ng-options="category as category.name for category in categories track by category._id" ng-model="selected"></select>
+    <label>Name: </label><input type="text" ng-model="product.name" /><br />
+    <label>Price: </label><input type="number" ng-model="product.price" /><br />
+    <label>Description: </label><input type="text" ng-model="product.description"/></br>
+    <label>Tags: </label><input type="text" ng-model="product.tags" placeholder="Enter tags separated by a comma." /><br />
+    <label>Quantity:</label> <input type="number" ng-model="product.quantity" /><br />
+    <label>Category:</label> <select ng-model = "product.category"ng-options="category as category.name for category in categories" ng-model="selected"></select>
     <button ng-click = create(product)></button>
     {{product}}
   </form>
