@@ -78,7 +78,7 @@ describe('Product Route', function () {
         });
 
         it('should return 404 status code if invalid product requested', function (done) {
-            productRoutes.get('/api/products/detail/' + '2387498jndfegjbsdf')//'5696c7e6f5a201cd7c2aab59')
+            productRoutes.get('/api/products/' + '2387498jndfegjbsdf')//'5696c7e6f5a201cd7c2aab59')
             .expect(404)
             .end(function (err) {
                 if (err) throw new Error(err);
@@ -87,7 +87,7 @@ describe('Product Route', function () {
         });
 
         it('should get a single product with a 200 response', function (done) {
-            productRoutes.get('/api/products/detail/' + productId)
+            productRoutes.get('/api/products/' + productId)
             .expect(200)
             .end(function (err, response) {
                 if (err) return done(err);
@@ -120,7 +120,7 @@ describe('Product Route', function () {
 
         it('should edit a single product with a 200 response', function (done) {
             productRoutes
-            .put('/api/products/detail/' + productId)
+            .put('/api/products/' + productId)
             .send({
                 name: 'catCarpet',
                 price: 134123889,
@@ -134,7 +134,7 @@ describe('Product Route', function () {
                 if (err) return done(err);
                 expect(response.body).to.be.an('object');
                 expect(response.body.ok).to.equal(1);
-                productRoutes.get('/api/products/detail/'+productId)
+                productRoutes.get('/api/products/'+productId)
                     .end(function(err, response) {
                         expect(response.body.name).to.equal('catCarpet');
                         done();

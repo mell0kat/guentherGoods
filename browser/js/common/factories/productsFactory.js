@@ -3,7 +3,7 @@ app.factory('ProductsFactory', function ($http) {
 	var ProductsFactory = {};
 
     ProductsFactory.fetchProductById = function(id){
-        return $http.get('/api/products/detail/' + id)
+        $http.get('/api/products/' + id)
         .then(function(response){
             return response.data;
         });
@@ -24,7 +24,5 @@ app.factory('ProductsFactory', function ($http) {
     }
     return ProductsFactory;
 
-})
-
-
+});
 

@@ -17,7 +17,7 @@ router.get('/categories/:category', function(req, res, next) {
 
 });
 
-router.get('/detail/:productId', function(req, res, next) {
+router.get('/:productId', function(req, res, next) {
     Product.findById(req.params.productId)
     .populate('reviews')
     .then( product => {
@@ -35,19 +35,19 @@ router.post('/', function(req, res, next) {
     .then(null, next);
 });
 
-router.put('/detail/:productId', function(req, res, next) {
+router.put('/:productId', function(req, res, next) {
     Product.update( { _id: req.params.productId }, req.body, { upsert: true})
     .then( updatedProduct => res.json(updatedProduct))
     .then(null, next);
 });
 
-router.delete('/detail/:productId', function(req, res, next) {
+router.delete('/:productId', function(req, res, next) {
     Product.remove( { _id: req.params.productId })
     .then( () => res.status(204).send('Product successfully deleted! MEOW!'))
     .then(null, next);
 });
 
-router.post('/detail/:productId/reviews', function(req, res, next) {
+router.post('/:productId/reviews', function(req, res, next) {
     Review.create(req.body)
     .then(function (review) {
         var reviewToAdd = review;
@@ -62,4 +62,4 @@ router.post('/detail/:productId/reviews', function(req, res, next) {
     })
     .then(null, next);
 
-})
+});
