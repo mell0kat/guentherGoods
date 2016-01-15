@@ -2,7 +2,7 @@
 	<div class="row">
 
         <!-- Note that I am filtering by office but we will need to set up something on the scope whose value changes when user presses category button -->
-		<productlisting class="col-xs-4" ng-repeat="product in products | filterByCategory:'Office'">
+		<productlisting class="col-xs-4" ng-repeat="product in products | filterByCategory: category">
 		</productlisting>
 	</div>
 </div>

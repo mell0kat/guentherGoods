@@ -20,7 +20,7 @@
     <div class="lower-container clearfix">
         <ul class="nav navbar-nav">
             <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
-                <a ng-click="getCategoryProducts()">{{ item.label }}</a>
+                <a ui-sref="productsByCategory({category: item.label})">{{ item.label }}</a>
             </li>
         </ul>
         <div ng-show="user" class="welcome">
