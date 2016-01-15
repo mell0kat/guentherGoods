@@ -1,0 +1,10 @@
+<div class="container" >
+	<div class="row">
+
+        <!-- Note that I am filtering by office but we will need to set up something on the scope whose value changes when user presses category button -->
+		<productlisting class="col-xs-4" ng-repeat="product in products | filterByCategory:'Office'">
+		</productlisting>
+	</div>
+</div>
+
+<!-- Write a function, instead of a ui-sref, that will go to the allproducts state and send in that item.label. -->
