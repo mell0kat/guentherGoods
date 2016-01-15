@@ -6,7 +6,8 @@ router.get('/', function (req, res) {
     User.find({})
         .then(function (users) {
             res.status(200).send(users);
-        });
+        })
+        .then(null, next);
 });
 
 // lookup a user's account

@@ -9,7 +9,7 @@
         </div>
         <div class="float-right" ng-show="!user">
             <div class="user-settings" ng-show="user">User Settings</div>
-            <button class="btn btn-primary" ui-sref="#">Sign Up</button>
+            <button class="btn btn-primary" ui-sref="login">Sign Up</button>
             <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
         </div>
         <div ng-show="user" class="welcome">
@@ -23,7 +23,6 @@
                 <a ng-click="getCategoryProducts()">{{ item.label }}</a>
             </li>
         </ul>
-        <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
         <div ng-show="user" class="welcome">
             <span>Welcome, {{ user.email }}!</span>
        <a ng-click="logout()">Logout</a>
