@@ -9,8 +9,11 @@ app.factory('UserFactory', function ($http) {
     };
 
     UserFactory.fetchAll = function() {
-        return $http.get('/api/users/')
-        .then(response => response.data);
+        return $http.get('/api/users')
+        .then(function(response) {
+            return response.data;
+        })
     };
+
     return UserFactory;
 });

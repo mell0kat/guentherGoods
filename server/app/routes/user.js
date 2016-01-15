@@ -4,10 +4,12 @@ var User = require('mongoose').model('User');
 
 // get all users
 router.get('/', function(req, res, next) {
+    console.log('hi');
     User.find({})
         .then(function(users){
             res.status(200).send(users);
-        });
+        })
+        .then(null, next);
 });
 
 // lookup a user's account

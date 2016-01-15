@@ -1,15 +1,14 @@
 app.config(function($stateProvider) {
     $stateProvider.state('userList', {
         templateUrl: '/js/user-list/userlist.html',
-        url: '/userlist/',
-        controller: function($scope, users){
-            $scope.users = users;
+        url: '/userlist',
+        controller: function($scope, allUsers){
+            $scope.allUsers = allUsers;
         },
         resolve: {
-            user: function(UserFactory, $stateParams){
+            allUsers: function(UserFactory){
                 return UserFactory.fetchAll();
             }
         }
-
     });
 });
