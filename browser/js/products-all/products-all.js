@@ -18,6 +18,7 @@ app.config(function($stateProvider) {
         url:'/products/:category',
         templateUrl: 'js/products-all/products-all.html',
         controller: function($scope, products, category) {
+
             $scope.products = products;
             $scope.category = category;
         },

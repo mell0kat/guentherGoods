@@ -3,22 +3,42 @@
         <h2>{{product.name}}</h2>
         <div class="row">
             <div class="col-xs-6" id="productPhoto"><img src="http://i1382.photobucket.com/albums/ah279/npalenchar/products/apartment/ovenmitts_zps1zlumkqn.png"/></div>
+
             <div id="productSummary" class="col-xs-6">
-                <p>Price: {{product.price | currency }}</p>
-                <div class="form-group">
-                    <label>Quantity</label>
-                    <input ng-model="order.quantity"></input>
+               <ul class="nav nav-tabs">
+                 <li role="presentation" class="active" ng-click="setTab('description')" ><a>Description</a></li>
+                 <li role="presentation" ng-click="setTab('reviews')"><a>Reviews</a></li>
+               </ul>
+               <div id="description" ng-show="choice!=='reviews'">
+                    <p>Price: {{product.price | currency }}</p>
+                    <div class="form-group">
+                        <label>Quantity</label>
+                        <input ng-model="order.quantity"></input>
+                    </div>
+                    <div class="form-group">
+                        <label>size</label>
+                        <select ng-model="order.size">
+                            <option>S</option>
+                            <option>M</option>
+                            <option>L</option>
+                        </select>
+                    </div>
+                    <p>Description: {{product.description}}</p>
+                    <button>Add to Cart</button>
                 </div>
-                <div class="form-group">
-                    <label>size</label>
-                    <select ng-model="order.size">
-                        <option>S</option>
-                        <option>M</option>
-                        <option>L</option>
-                    </select>
+                <div ng-show="choice==='reviews'">
+                    TEXT
+                    <button ng-click="addReview()">Add a Review</button>
+                    <form ng-show = "addReviewClicked" name="userForm" ng-submit = "submitReview()">
+
+                        <input
+                            type="text"
+                            name="review"
+                            ng-model="review"
+                            required>
+                        <input type="submit" id="submit" value="Submit" />
+                    </form>
                 </div>
-                <p>Description: {{product.description}}</p>
-                <button>Add to Cart</button>
             </div>
         </div>
     <div id="detailsAndReviews"></div>

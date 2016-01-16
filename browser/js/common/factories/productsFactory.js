@@ -7,7 +7,8 @@ app.factory('ProductsFactory', function ($http) {
     };
 
     ProductsFactory.fetchProductById = function(id){
-        $http.get('/api/products/' + id)
+
+        return $http.get('/api/products/' + id)
         .then(function(response){
             return response.data;
         });
@@ -44,7 +45,12 @@ app.factory('ProductsFactory', function ($http) {
 
         })
     }
-
+    ProductsFactory.fetchReviewsForProduct = function(productId) {
+        return $http.get('api/products/:productId/reviews')
+        .then(function(reviews) {
+            console.log("console logging for right now")
+        })
+    }
     return ProductsFactory;
 
 });

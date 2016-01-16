@@ -54,12 +54,25 @@ router.delete('/:productId', function(req, res, next) {
     .then(null, next);
 });
 
+router.get('/:productId/reviews', function(req, res, next) {
+    Product.findById(req.params.productId)
+    .then(function(product) {
+        console.log(product, product.reviews, "product router getting reviews")
+        res.status(201).send(product.reviews);
+    })
+    .then(null, next);
+});
+
 router.post('/:productId/reviews', function(req, res, next) {
+    console.log(req.body, "REQ BODY")
+    var reviewToAdd;
     Review.create(req.body)
     .then(function (review) {
-        var reviewToAdd = review;
+        reviewToAdd = review;
+        console.log("reviewToAdd", reviewToAdd)
         return Product.findById(req.params.productId)
         .then(function(product) {
+            console.log(reviewToAdd, "second time")
             product.reviews.push(reviewToAdd._id);
             return product.save();
         })
@@ -70,3 +83,4 @@ router.post('/:productId/reviews', function(req, res, next) {
     .then(null, next);
 
 });
+
