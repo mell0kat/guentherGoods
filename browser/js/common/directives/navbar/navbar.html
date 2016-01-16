@@ -10,15 +10,20 @@
                 <span class="input-group-addon" id="basic-addon2">Search</span>
                 </div>
             </div>
-            <div class="col-md-6">
+
+            <div class="col-md-4">
+                <div ng-show="user">
+                    <button class="btn welcome-button"><span>Welcome, {{ user.email }}!</span></button>
+                </div>
+            </div>
+            <div class="col-md-2">
                 <div ng-show="!user">
-                    <div ng-show="user">User Settings</div>
                     <button class="btn login-button" ui-sref="login" ng-show="!user" >Login</button>
                     <button class="btn login-button" ui-sref="signup">Sign Up</button>
                 </div>
                 <div ng-show="user">
-                    <span>Welcome, {{ user.email }}!</span>
-                    <a ng-click="logout()">Logout</a>
+                    <a ng-click="logout()"><button class="btn login-button">Log Out</button></a>
+                    <button class="btn login-button">My Account</button>
                 </div>
             </div>
             <div class="col-md-1">
