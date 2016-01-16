@@ -54,10 +54,12 @@ router.delete('/:productId', function(req, res, next) {
     .then(null, next);
 });
 
+
 router.post('/:productId/reviews', function(req, res, next) {
+    var reviewToAdd;
     Review.create(req.body)
     .then(function (review) {
-        var reviewToAdd = review;
+        reviewToAdd = review;
         return Product.findById(req.params.productId)
         .then(function(product) {
             product.reviews.push(reviewToAdd._id);
@@ -70,3 +72,4 @@ router.post('/:productId/reviews', function(req, res, next) {
     .then(null, next);
 
 });
+
