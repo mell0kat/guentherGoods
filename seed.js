@@ -217,7 +217,7 @@ connectToDb.then(function () {
         // process.kill(0);
     }).catch(function (err) {
         console.error(err, 'you have an error');
-        // process.kill(1);
+        process.kill(1);
     })
 })
 .then(function(){
@@ -247,6 +247,7 @@ connectToDb.then(function () {
         console.log(chalk.green('Seeding products successful!'));
     }).catch(function (err) {
         console.error(err);
+        process.kill(1);
     })
 })
 .then(function(){
@@ -262,6 +263,7 @@ connectToDb.then(function () {
 
     }).catch(function (err) {
         console.error(err);
+        process.kill(1);
     })
 })
 .then(function(){
