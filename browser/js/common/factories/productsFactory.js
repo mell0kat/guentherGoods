@@ -46,10 +46,18 @@ app.factory('ProductsFactory', function ($http) {
         })
     }
     ProductsFactory.fetchReviewsForProduct = function(productId) {
-        return $http.get('api/products/:productId/reviews')
+        console.log("in fetch review")
+        return $http.get('api/products/'+ productId +'/reviews')
         .then(function(reviews) {
-            console.log("console logging for right now")
+            return reviews.populate();
         })
+        .then(function(populated) {
+            console.log('populatedReviews');
+        })
+            // console.log("console logging for right now", reviews.data)
+            // return reviews.data.map(function(review) {
+            //     return review.text;
+            // });
     }
     return ProductsFactory;
 

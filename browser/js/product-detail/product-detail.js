@@ -3,7 +3,6 @@ app.config(function($stateProvider) {
         url: '/productDetail/:id',
         templateUrl: 'js/product-detail/product-detail.html',
         controller: function($scope, product, $window, ReviewsFactory) {
-            console.log(product, "look for product")
             $scope.product = product;
 
             $scope.order = {};
@@ -19,6 +18,12 @@ app.config(function($stateProvider) {
             $scope.submitReview = function() {
                 ReviewsFactory.addReview($scope.review, product);
             }
+            $scope.reviews = product.reviews.map(function(review)  {
+                console.log(review)
+                return review.text;
+            })
+
+
             // console.log(reviews);
             // $scope.reviews = reviews;
         },
@@ -26,6 +31,9 @@ app.config(function($stateProvider) {
             product: function($stateParams, ProductsFactory) {
                 return ProductsFactory.fetchProductById($stateParams.id);
             }
+            // reviews: function($stateParams, ProductsFactory){
+            //     return ProductsFactory.fetchReviewsForProduct($stateParams.id)
+            // }
             // },
             // reviews: function($stateParams, ProductsFactory) {
             //     return ProductsFactory.fetchReviewsForProduct($stateParams.id);

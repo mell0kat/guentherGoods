@@ -26,8 +26,11 @@
                     <p>Description: {{product.description}}</p>
                     <button>Add to Cart</button>
                 </div>
+
                 <div ng-show="choice==='reviews'">
-                    TEXT
+                    <div>
+                    {{reviews}}
+                    </div>
                     <button ng-click="addReview()">Add a Review</button>
                     <form ng-show = "addReviewClicked" name="userForm" ng-submit = "submitReview()">
 
