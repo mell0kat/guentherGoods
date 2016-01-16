@@ -19,25 +19,13 @@ app.config(function($stateProvider) {
                 ReviewsFactory.addReview($scope.review, product);
             }
             $scope.reviews = product.reviews.map(function(review)  {
-                console.log(review)
                 return review.text;
             })
-
-
-            // console.log(reviews);
-            // $scope.reviews = reviews;
         },
         resolve : {
             product: function($stateParams, ProductsFactory) {
                 return ProductsFactory.fetchProductById($stateParams.id);
             }
-            // reviews: function($stateParams, ProductsFactory){
-            //     return ProductsFactory.fetchReviewsForProduct($stateParams.id)
-            // }
-            // },
-            // reviews: function($stateParams, ProductsFactory) {
-            //     return ProductsFactory.fetchReviewsForProduct($stateParams.id);
-            // }
         }
     });
 });
