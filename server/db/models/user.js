@@ -10,12 +10,19 @@ var SellerProfile = new Schema({
     storeName: String
 });
 var UserSchema = new Schema({
-    email: { type: String, required: true },
+    email: { type: String },
     password: { type: String },
-    name: { type: String, required: true},
+    name: { type: String },
     salt: { type: String },
-    isSeller: Boolean,
-    isAdmin: Boolean,
+    google: { id: String },
+    isSeller: {
+        type: Boolean,
+        default: false
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false
+    },
     shoppingCart: { type: Schema.Types.ObjectId, ref: 'ShoppingCart'},
     reviews: [{ type: Schema.Types.ObjectId, ref: 'Review'}],
     history: [{ type: Schema.Types.ObjectId, ref: 'Order'}],
