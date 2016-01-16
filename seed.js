@@ -22,9 +22,11 @@ var Promise = require('bluebird');
 var chalk = require('chalk');
 var connectToDb = require('./server/db');
 var User = Promise.promisifyAll(mongoose.model('User'));
+var Category = Promise.promisifyAll(mongoose.model('Category'));
 var Product = Promise.promisifyAll(mongoose.model('Product'));
 var Review = Promise.promisifyAll(mongoose.model('Review'));
 var ShoppingCart = Promise.promisifyAll(mongoose.model('ShoppingCart'));
+
 
 var seedUsers = function () {
 
@@ -102,40 +104,35 @@ var seedProducts = function() {
         {
         name: 'kittyRug',
         price: 25,
-        category: 'Home Goods',
+        category: '5699282f2cac2390197af2e1',
         description: 'a soft place to stand',
-        quantity: 5,
-        tags: ['rug', 'cute'],
-        reviews: ["5696844abf2de4ad6c740107", "5696844abf2de4ad6c740108"]
+        quantity: 5
        },
         {name: 'catmug',
         price: 5,
-        category: 'Office',
+        category: '5699282f2cac2390197af2e3',
         description: 'ncahhdhf',
-        quantity: 3,
-        tags: ['mug', 'cute']
+        quantity: 3
+
        },
         {name: 'cat furniture',
         price: 25,
-        category: 'Home Goods',
+        category: '5699282f2cac2390197af2e1',
         description: 'a sddf',
-        quantity: 5,
-        tags: ['bed', 'utile'],
-        reviews: ['56967b3903d8b51b27771d4d']
+        quantity: 5
        },
         {name: 'catLeggings',
         price: 100,
-        category: 'Apparel',
+        category: '5699282f2cac2390197af2e2',
         description: 'super chic',
-        quantity: 1,
-        tags: ['fetch']
+        quantity: 1
+
        },
         {name: 'Cat Oven Mits',
         price: 23,
-        category: 'apartment',
+        category: '5699282f2cac2390197af2e1',
         description: 'so useful',
-        quantity: 10,
-        tags: ['fetch']
+        quantity: 10
        }
        ]
     return Product.createAsync(products);
@@ -196,7 +193,16 @@ var seedCart = function() {
     return ShoppingCart.createAsync(cart);
 
 }
-
+var seedCategory = function() {
+    var category = [
+        { name: 'Accessories'},
+        { name: 'Apartment'},
+        { name: 'Clothing'},
+        { name: 'Bookstore'},
+        { name: 'For your Cat'}
+        ];
+    return Category.createAsync(category);
+}
 
 connectToDb.then(function () {
     return User.findAsync({}).then(function (users) {
@@ -211,7 +217,22 @@ connectToDb.then(function () {
         // process.kill(0);
     }).catch(function (err) {
         console.error(err, 'you have an error');
-        // process.kill(1);
+        process.kill(1);
+    })
+})
+.then(function(){
+    Category.findAsync({}).then(function (category) {
+        if (category.length === 0) {
+            return seedCategory();
+        } else {
+            console.log(chalk.magenta('Seems to already be category data, exiting!'));
+        }
+    })
+    .then(function () {
+        console.log(chalk.green('Seeding category successful!'));
+    }).catch(function (err) {
+        console.error(err);
+        process.kill(1);
     })
 })
 .then(function(){
@@ -226,6 +247,7 @@ connectToDb.then(function () {
         console.log(chalk.green('Seeding products successful!'));
     }).catch(function (err) {
         console.error(err);
+        process.kill(1);
     })
 })
 .then(function(){
@@ -241,6 +263,7 @@ connectToDb.then(function () {
 
     }).catch(function (err) {
         console.error(err);
+        process.kill(1);
     })
 })
 .then(function(){
@@ -254,9 +277,10 @@ connectToDb.then(function () {
     })
     .then(function () {
         console.log(chalk.green('Seeding cart successful!'));
-        process.kill(0);
+        process.kill(1);
     }).catch(function (err) {
         console.error(err);
         process.kill(1);
     })
 })
+

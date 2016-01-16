@@ -1,0 +1,26 @@
+<div id="productCreateForm">
+  <form novalidate class="simple-form">
+    <label>Name: </label><input type="text" ng-model="product.name" /><br />
+    <label>Price: </label><input type="number" ng-model="product.price" /><br />
+    <label>Description: </label><input type="text" ng-model="product.description"/></br>
+    <label>Tags: </label><input type="text" ng-model="product.tags" placeholder="Enter tags separated by a comma." /><br />
+    <label>Quantity:</label> <input type="number" ng-model="product.quantity" /><br />
+    <label>Category:</label> <select ng-model = "product.category"ng-options="category as category.name for category in categories" ng-model="selected"></select>
+    <button ng-click = create(product)></button>
+    {{product}}
+  </form>
+</div>
+
+<!--
+"_id": ObjectId("5697f775235bb79213ccb1ee"),
+"name": "Cat Oven Mits",
+"price": 23,
+"description": "so useful",
+"reviews": [ ],
+"tags": [
+  "fetch"
+],
+"quantity": 10,
+"category": [
+  "apartment"
+], -->

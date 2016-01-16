@@ -2,6 +2,7 @@
 
 var mongoose = require('mongoose');
 
+
 var productSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -13,8 +14,8 @@ var productSchema = new mongoose.Schema({
         required: true
     },
     category: {
-        type: [String]
-        // enum: ['Apparel', 'Home Goods', 'Accessories', 'For Your Cat', 'Office', 'Misc.']
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category'
     },
     description: {
         type: String,

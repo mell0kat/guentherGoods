@@ -1,5 +1,7 @@
+var crypto = require('crypto');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var _ = require('lodash')
 require('./product');
 // require('./shoppingcart');
 
@@ -9,8 +11,9 @@ var SellerProfile = new Schema({
 });
 var UserSchema = new Schema({
     email: { type: String, required: true },
-    password: { type: String, required: true},
+    password: { type: String },
     name: { type: String, required: true},
+    salt: { type: String },
     isSeller: Boolean,
     isAdmin: Boolean,
     shoppingCart: { type: Schema.Types.ObjectId, ref: 'ShoppingCart'},
@@ -23,7 +26,7 @@ var UserSchema = new Schema({
 });
 
 // addToHistory also empties out the shopping cart (creates a new empty cart)
-UserSchema.method.addToHistory = function(orderId){
+UserSchema.methods.addToHistory = function(orderId){
     var thisUser = this;
     thisUser.history.push(orderId);
     ShoppingCart.create({}).then(newCart => {
@@ -32,5 +35,41 @@ UserSchema.method.addToHistory = function(orderId){
     });
 
 };
+
+// method to remove sensitive information from user objects before sending them out
+UserSchema.methods.sanitize =  function () {
+    return _.omit(this.toJSON(), ['password', 'salt']);
+};
+
+// generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations
+// are all used for local authentication security.
+var generateSalt = function () {
+    return crypto.randomBytes(16).toString('base64');
+};
+
+var encryptPassword = function (plainText, salt) {
+    var hash = crypto.createHash('sha1');
+    hash.update(plainText);
+    hash.update(salt);
+    return hash.digest('hex');
+};
+
+UserSchema.pre('save', function (next) {
+
+    if (this.isModified('password')) {
+        this.salt = this.constructor.generateSalt();
+        this.password = this.constructor.encryptPassword(this.password, this.salt);
+    }
+
+    next();
+
+});
+
+UserSchema.statics.generateSalt = generateSalt;
+UserSchema.statics.encryptPassword = encryptPassword;
+
+UserSchema.method('correctPassword', function (candidatePassword) {
+    return encryptPassword(candidatePassword, this.salt) === this.password;
+});
 
 mongoose.model('User', UserSchema);
