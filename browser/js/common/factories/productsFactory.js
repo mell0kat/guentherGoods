@@ -34,6 +34,17 @@ app.factory('ProductsFactory', function ($http) {
         })
     }
 
+    ProductsFactory.fetchACategory = function (categoryName) {
+        return $http.get('/api/products/categories')
+        .then(function(response){
+            //This will look for the category by this name and return the object
+            return response.data.filter(function(categoryObject){
+                return (categoryObject.name === categoryName)
+            });
+
+        })
+    }
+
     return ProductsFactory;
 
 });
