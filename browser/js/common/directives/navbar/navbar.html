@@ -10,7 +10,8 @@
         <div class="float-right" ng-show="!user">
             <div class="user-settings" ng-show="user">User Settings</div>
             <button class="btn btn-primary" ui-sref="login">Sign Up</button>
-            <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
+            <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button> |
+            <button ng-click="goToCart()" class="btn btn-default"><span class="glyphicon glyphicon-shopping-cart"></span></button>
         </div>
         <div ng-show="user" class="welcome">
             <span>Welcome, {{ user.email }}!</span>
