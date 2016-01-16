@@ -15,8 +15,14 @@ var UserSchema = new Schema({
     name: { type: String },
     salt: { type: String },
     google: { id: String },
-    isSeller: Boolean,
-    isAdmin: Boolean,
+    isSeller: {
+        type: Boolean,
+        default: false
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false
+    },
     shoppingCart: { type: Schema.Types.ObjectId, ref: 'ShoppingCart'},
     reviews: [{ type: Schema.Types.ObjectId, ref: 'Review'}],
     history: [{ type: Schema.Types.ObjectId, ref: 'Order'}],
