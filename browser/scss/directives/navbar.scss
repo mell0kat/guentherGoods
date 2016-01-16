@@ -12,6 +12,7 @@ navbar {
 
   .lower-container {
     width: 100%;
+    position: relative;
     margin-top: 70px;
     text-align: center;
     .nav{
@@ -83,6 +84,39 @@ navbar {
     clear: none;
   }
 
+  .cart-button {
+    margin-top: 12px;
+    float: right;
+    border: none;
+    background: url('http://i1382.photobucket.com/albums/ah279/npalenchar/cart_button_zpsixsusuqx.jpg') no-repeat;
+    background-size: 50px;
+    &:hover {
+      background: url('http://i1382.photobucket.com/albums/ah279/npalenchar/cart_button_hover_zpsa7bqva8z.jpg') no-repeat;
+      background-size: 50px;
+    }
+    clear: none;
+
+
+  }
+  .cat-button{
+    img {
+      padding: none;
+      background: transparent;
+      height: 30px;
+    }
+    &:hover {
+    
+      img {
+        opacity: 0.6;
+      }
+    }
+    border: none; 
+    background: none;
+    padding: none;
+    margin-top: 5px;
+    float: right;
+  }
+
   .logo-button {
     margin-top: -10px;
     padding: none;
@@ -106,9 +140,16 @@ navbar {
       cursor: pointer;
     }
   }
-  
 
 }
+
+.white {
+  color: transparent;
+  &:hover {
+      color: transparent;
+    }
+}
+
 
 .clearfix:before,
 .clearfix:after {
