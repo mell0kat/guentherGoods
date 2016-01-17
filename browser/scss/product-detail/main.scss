@@ -1,18 +1,48 @@
 
-#productPhoto  {
-    img {
-        width:100%;
-    }
-    background: blue;
+
+.description{
+	margin-top: 50px;
+	margin-left: 20px;
 }
+
+.product_reviews{
+	margin-top: 20px;
+	margin-left: 20px;
+	max-height: 480px;
+	overflow: scroll;
+}
+
+.reviewbox {
+	border-bottom: 1px solid silver;
+	padding-top:10px;
+	padding-bottom: 20px;
+	padding-left: 10px;
+}
+
+.review-button {
+	float: right;
+}
+
+#productPhoto  {
+    height: 550px;
+    img {
+        height: 100%;
+    }
+    background: none;
+}
+
 #productSummary {
-    background: red;
+    background: none;
+    height: 550px;
 
 }
-#detailsAndReviews {
-    background:green;
-}
+
+
 h2 {
     color: red;
+}
+
+.input-quantity {
+	max-width: 40px;
 }
 
