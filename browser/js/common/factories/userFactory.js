@@ -15,5 +15,10 @@ app.factory('UserFactory', function ($http) {
         })
     };
 
+    UserFactory.createNewCart = function(id) {
+        // takes a user ID
+        return $http.post('/api/session-user/new-cart/' + id);
+    }
+
     return UserFactory;
 });
