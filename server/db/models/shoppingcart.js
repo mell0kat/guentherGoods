@@ -48,5 +48,5 @@ cartSchema.virtual('totalPrice').get(function() {
 });
 
 // need methods for updating inventory upon adding items
-
 mongoose.model('ShoppingCart', cartSchema);
+module.exports = { cart: cartSchema }

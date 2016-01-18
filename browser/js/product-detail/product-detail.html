@@ -11,7 +11,7 @@
                </ul>
                <div id="description" ng-show="choice!=='reviews'">
 
-                    <div class="description">{{product.price | currency }}>
+                    <div class="description">{{product.price | currency }}
                         </br></br>
 
                     <label>Description:</label></br>
@@ -32,14 +32,14 @@
                                 <option>L</option>
                             </select>
                         </div>
-                        <button ng-show="product.quantity > 0">Add to Cart</button>
-                        <button ng-show="product.quantity === 0">Out of stock</button>
-
-
                      <!--TODO: we might be able to refactor the button to higher-order functionality-->
-                        <button ng-click="addToCart(shoppingCart, order)" class="btn btn-default">Add to Cart</button>
-
-                    </div>
+                        <div ng-show="product.quantity > 0">
+                          <button ng-click="addToCart(order)"class="btn btn-default">Add to Cart</button>
+                        </div>
+                        <div ng-show="product.quantity === 0 ">
+                          <button disabled class="btn btn-danger">Out of Stock</button>
+                        </div>
+                      <br />
             </div>
 
             <div class="product_reviews" ng-show="choice==='reviews'">
@@ -48,6 +48,17 @@
                 <button class="review-button" ng-click="addReview()">Add a Review</button>
                 <form ng-show= "addReviewClicked" name="userForm" ng-submit= "submitReview()">
                     <div class="form-group">
+                        <label>size</label>
+                        <select ng-model="order.size">
+                            <option>S</option>
+                            <option>M</option>
+                            <option>L</option>
+                        </select>
+                    </div>
+                    <p>Description: {{product.description}}</p>
+                 <!--TODO: we might be able to refactor the button to higher-order functionality-->
+                    <!--<button ng-click="addToCart(order)" class="btn btn-default">Add to Cart</button>-->
+                </div>
                         <textarea class="form-control" rows="3" name="review" ng-model="review" placeholder="meow" ng-minlength="50" required ></textarea>
 
                             <div class="form-group" ng-model="review.stars">Stars:

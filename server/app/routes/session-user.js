@@ -5,7 +5,9 @@ var router = require('express').Router(),
 
 module.exports = router;
 
-router.post('/new-cart/:id', function(req, res, next){
+router.post('/new-user/:id', function(req, res, next){
+    //:id of the user
+
     var newCart;
 
     ShoppingCart.create({ items: [] })
@@ -20,13 +22,14 @@ router.post('/new-cart/:id', function(req, res, next){
         .then(user => res.status(200).send(user))
         .then(null, next);
 });
-router.post('/add-to-cart/:cartId', function(req, res, next){
+router.post('/add-to-cart/:userId', function(req, res, next){
 
-    ShoppingCart.findOne({ _id: req.params.cartId })
-        .then(cart => {
-            cart.items.push(req.body);
-            return cart.save();
+    User.findOne({ _id: req.params.userId })
+        .then(user => {
+            console.log(user.shoppingCart.items);
+            user.shoppingCart.items.push(req.body);
+            return user.save();
         })
-        .then(updatedCart => res.status(200).send(updatedCart))
+        .then(updatedUser => res.status(200).send(updatedUser))
         .then(null, next);
 });

@@ -15,7 +15,6 @@ router.get('/:id', function (req, res, next) {
     User.findOne({_id: req.params.id})
         .populate('reviews')
         .then(function (user) {
-            console.log('[routes/user] found user:', user);
             if (!user) res.status(404).send('User not found!');
             else res.status(200).send(user);
         })
