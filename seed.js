@@ -39,7 +39,8 @@ var seedUsers = function () {
         {
             email: 'obama@gmail.com',
             password: 'potus',
-            name: 'You know me'
+            name: 'You know me',
+            address: '5 Hanover Square New York, NY 10005'
         },
         {
             email: 'hello@gmail.com',
@@ -86,21 +87,17 @@ var seedUsers = function () {
             name: 'Coffee Cup'
         },
         {
-            email: 'chocolateraspberriesgmail.com',
+            email: 'chocolateraspberries@gmail.com',
             password: 'yumyum',
             name: 'Zeus'
         },
         {
-            email: 'obama@gmail.com',
-            password: 'potus',
-            name: 'Zeus'
-        },
-        {
-        email: "michelleobama@gmail.com",
-        password: "flotus",
-        name: "Michelle",
-        isAdmin: true,
-        isSeller: true
+            email: "michelleobama@gmail.com",
+            password: "flotus",
+            name: "Michelle",
+            isAdmin: true,
+            isSeller: true,
+            address: '22 Whitehouse Ave. D.C.'
         }
     ];
     return User.createAsync(users);

@@ -11,9 +11,10 @@ app.config(function($stateProvider) {
             user: function(AuthService, UserFactory){
                 return AuthService.getLoggedInUser()
                     .then(loggedInUser => {
-                        if(!loggedInUser.shoppingCart) return UserFactory.createNewCart(loggedInUser._id);
-                        else return loggedInUser;
-                    })
+                         if(!loggedInUser) return UserFactory.fetchGuestUser();
+                     })
+                    //     else return loggedInUser;
+                    // })
             }
             // cart: function(ShoppingCartFactory, user) {
             //     return ShoppingCartFactory.fetchCart(user.shoppingCart)

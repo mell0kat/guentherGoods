@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col col-xs-12 header">
-      <h1>Cat Cart<span class="align-right"><button class="align-right btn btn-success">Checkout</button></span></h1>
+      <h1>Cat Cart<span class="align-right"><button ui-sref="checkout" class="align-right btn btn-success">Checkout</button></span></h1>
       <h4 style="color: red; font-family: monospace;">Developer View - need to display english product info.</h4>
       <div ng-repeat="product in user.shoppingCart.items">
         <h3>product: {{product}}</h3>
