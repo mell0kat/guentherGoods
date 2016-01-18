@@ -15,5 +15,12 @@ app.factory('UserFactory', function ($http) {
         })
     };
 
+    UserFactory.register = function(newUserInfo) {
+        return $http.post('/api/users', newUserInfo)
+        .then(function(response) {
+            return response.data;
+        });
+    };
+
     return UserFactory;
 });
