@@ -68,8 +68,6 @@ describe('User routes', function () {
         userRoutes.get('/api/users/' + testUser1Id)
             .expect(200)
             .end(function (err, response) {
-                console.log("RES:", response);
-                console.log("ERR:",err);
                 expect(response.body).to.be.an('object');
                 expect(response.body.email).to.equal('EvilExNum1');
                 expect(response.body.password).to.equal('hipsterdeamonchicks');
