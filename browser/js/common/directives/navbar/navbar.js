@@ -1,4 +1,4 @@
-app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) {
+app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, UserFactory) {
 
     return {
         restrict: 'E',
@@ -31,10 +31,15 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
             };
 
             var setUser = function () {
-                AuthService.getLoggedInUser().then(function (user) {
-                    console.log(user);
-                    scope.user = user;
-                });
+                AuthService.getLoggedInUser()
+                    .then(function (user) {
+                        if(!user) return UserFactory.fetchGuestUser();
+                        else return user;
+                    })
+                    .then(finalUser => {
+                        console.log("final:", finalUser);
+                        scope.user = finalUser;
+                    });
             };
 
             var removeUser = function () {

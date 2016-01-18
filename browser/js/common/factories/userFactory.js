@@ -15,10 +15,18 @@ app.factory('UserFactory', function ($http) {
         })
     };
 
+    UserFactory.fetchGuestUser = function(){
+        return $http.get('/guest')
+            .then(guestRes => {
+                console.log('session.guest,', guestRes);
+                return guestRes.data
+            });
+    }
+
     UserFactory.createNewCart = function(id) {
         // takes a user ID
         return $http.post('/api/session-user/new-cart/' + id);
-    }
+    };
 
     return UserFactory;
 });

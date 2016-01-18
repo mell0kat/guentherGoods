@@ -5,7 +5,7 @@
             <div class="col-xs-6" id="productPhoto"><img src="http://i1382.photobucket.com/albums/ah279/npalenchar/products/apartment/ovenmitts_zps1zlumkqn.png"/></div>
 
             <div id="productSummary" class="col-xs-6">
-               <ul class="nav nav-tabs">
+               <ul class="nav nav-tabs">session
                  <li role="presentation" class="active" ng-click="setTab('description')" ><a>Description</a></li>
                  <li role="presentation" ng-click="setTab('reviews')"><a>Reviews</a></li>
                </ul>
@@ -25,7 +25,7 @@
                     </div>
                     <p>Description: {{product.description}}</p>
                  <!--TODO: we might be able to refactor the button to higher-order functionality-->
-                    <button ng-click="addToCart(shoppingCart, order)" class="btn btn-default">Add to Cart</button>
+                    <button ng-click="addToCart(order)" class="btn btn-default">Add to Cart</button>
                 </div>
 
                 <div ng-show="choice==='reviews'">
