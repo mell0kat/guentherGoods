@@ -2,7 +2,7 @@ var router = require('express').Router();
 var User = require('mongoose').model('User');
 
 // get all users
-router.get('/', function (req, res) {
+router.get('/', function (req, res, next) {
     User.find({})
         .then(function (users) {
             res.status(200).send(users);
@@ -28,7 +28,6 @@ router.post('/', function (req, res, next) {
         .then(createdUser => res.status(201).send(createdUser))
         .then(null, function(error){
             error.status = 400;
-            error.message = "Bad request";
             next(error);
         });
 });

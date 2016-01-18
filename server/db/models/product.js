@@ -22,11 +22,12 @@ var productSchema = new mongoose.Schema({
         required: true
     },
     photo: {
-        type: String
+        type: String,
+        default: 'http://i1382.photobucket.com/albums/ah279/npalenchar/Photo%20not%20found%20icon_zpsomlpbtal.png'
     },
     quantity: {
         type: Number,
-        default: 0
+        required:true
     },
     tags: {
         type: [String],

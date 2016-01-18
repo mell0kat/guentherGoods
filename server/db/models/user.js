@@ -1,16 +1,19 @@
 var crypto = require('crypto');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var _ = require('lodash')
-require('./product');
-// require('./shoppingcart');
+var _ = require('lodash');
+var Product = require('./product');
+//var Shopp require('./shoppingcart');
+var ShoppingCart = require('./shoppingcart');
 
 var SellerProfile = new Schema({
     products: [{ type: Schema.Types.ObjectId, ref: 'Product'}],
     storeName: String
 });
 var UserSchema = new Schema({
-    email: { type: String },
+    email: { type: String,
+            unique: true,
+            required: true },
     password: { type: String },
     name: { type: String },
     salt: { type: String },

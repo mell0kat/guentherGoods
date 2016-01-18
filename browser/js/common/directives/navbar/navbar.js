@@ -14,6 +14,10 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
                 { label: 'For your Cat', state: 'forYourCat'}
             ];
 
+            scope.goToCart = function() {
+                $state.go('cart');
+            };
+
             scope.user = null;
 
             scope.isLoggedIn = function () {
@@ -28,7 +32,6 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
 
             var setUser = function () {
                 AuthService.getLoggedInUser().then(function (user) {
-                    console.log(user);
                     scope.user = user;
                 });
             };

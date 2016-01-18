@@ -22,7 +22,7 @@ router.get('/categories', function(req, res, next) {
     Category.find({})
     .then( categoriesFound => res.json(categoriesFound) )
     .then(null, next)
-})
+});
 
 router.get('/:productId', function(req, res, next) {
     Product.findById(req.params.productId)
@@ -70,6 +70,5 @@ router.post('/:productId/reviews', function(req, res, next) {
         res.status(201).send('Review successfully posted! MEOW!');
     })
     .then(null, next);
-
 });
 

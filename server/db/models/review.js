@@ -5,7 +5,8 @@ var mongoose = require('mongoose');
 var reviewSchema = new mongoose.Schema({
     text:  {
         type: String,
-        required: true
+        required: true,
+        minlength: 50
     },
     date: {
         type: Date,

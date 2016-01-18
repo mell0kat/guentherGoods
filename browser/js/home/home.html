@@ -1,4 +1,23 @@
 <section id="home">
+
+    <carousel class="carousel" interval="3000">
+    	
+   	
+        <slide ng-repeat="image in images">
+            <img width="100%" ng-src="{{ image }}" />
+        </slide>
+   
+    </carousel>
+    
+    <div class="myContainer">
+    	<a ui-sref="products">Browse All Products
+   	
+
     <fullstack-logo></fullstack-logo>
-    <rando-greeting></rando-greeting>
+    </a></div>
+
+   
+
 </section>
+
+
