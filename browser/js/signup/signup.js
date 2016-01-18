@@ -8,18 +8,24 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('SignupCtrl', function ($scope, $http, UserFactory, $state) {
+app.controller('SignupCtrl', function ($scope, AuthService, UserFactory, $state) {
 
     $scope.signup = {};
     $scope.error = null;
 
     $scope.sendSignup = function (signupInfo) {
-
         $scope.error = null;
         UserFactory.register(signupInfo)
-        .then(function () {
-            $state.go('Login');
-        }).catch(function () {
+        .then(function (user) {
+            return AuthService.login(signupInfo);
+        },
+        function() {
+            $scope.error = 'Not valid. Please try again, MEOW!';
+        })
+        .then(function(user) {
+            $state.go('home');
+        })
+        .catch(function () {
             $scope.error = 'Credentials not valid. Try again.';
         });
     };
