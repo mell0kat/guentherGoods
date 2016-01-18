@@ -19,10 +19,15 @@ body {
   margin: 0 auto;
 }
 
+.align-right{
+  float: right;
+}
+
 @import 'directives/main';
 @import 'home/main';
 @import 'product-detail/main';
 @import 'about/main';
 @import 'tutorial/main';
 @import 'login/main';
+@import 'cart/main';
 @import 'product-create/main';

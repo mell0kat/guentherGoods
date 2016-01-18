@@ -8,8 +8,8 @@ var cartSchema = new mongoose.Schema({
             type: Number,
             default: 1
         },
-        price: {
-            type: Number
+        purchasePrice: {
+            type: Number //not used until an order is processed.
         },
         item: {
             type: mongoose.Schema.Types.ObjectId,

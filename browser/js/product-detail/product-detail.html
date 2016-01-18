@@ -13,7 +13,7 @@
                     <p>Price: {{product.price | currency }}</p>
                     <div class="form-group">
                         <label>Quantity</label>
-                        <input ng-model="order.quantity"></input>
+                        <input type="number" ng-model="order.quantity">
                     </div>
                     <div class="form-group">
                         <label>size</label>
@@ -24,7 +24,8 @@
                         </select>
                     </div>
                     <p>Description: {{product.description}}</p>
-                    <button>Add to Cart</button>
+                 <!--TODO: we might be able to refactor the button to higher-order functionality-->
+                    <button ng-click="addToCart(shoppingCart, order)" class="btn btn-default">Add to Cart</button>
                 </div>
 
                 <div ng-show="choice==='reviews'">
