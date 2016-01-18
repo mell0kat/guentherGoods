@@ -53,6 +53,10 @@ module.exports = function (app) {
             res.status(401).send('No authenticated user.');
         }
     });
+    app.get('/session/guest', function(req, res){
+        console.log("[session] this was hit");
+        res.send(req.body.guestUser);
+    })
 
     // Simple /logout route.
     app.get('/logout', function (req, res) {

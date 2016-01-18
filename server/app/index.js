@@ -9,6 +9,9 @@ module.exports = app;
 // function located at server/app/configure/index.js
 require('./configure')(app);
 
+//provide a guest account if no one is logged in
+app.use(require('./cookies'));
+
 // Routes that will be accessed via AJAX should be prepended with
 // /api so they are isolated from our GET /* wildcard.
 app.use('/api', require('./routes'));
