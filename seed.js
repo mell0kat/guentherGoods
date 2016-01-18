@@ -86,7 +86,7 @@ var seedUsers = function () {
             name: 'Coffee Cup'
         },
         {
-            email: 'chocolateraspberries@gmail.com',
+            email: 'chocolateraspberriesgmail.com',
             password: 'yumyum',
             name: 'Zeus'
         },
@@ -94,6 +94,13 @@ var seedUsers = function () {
             email: 'obama@gmail.com',
             password: 'potus',
             name: 'Zeus'
+        },
+        {
+        email: "michelleobama@gmail.com",
+        password: "flotus",
+        name: "Michelle",
+        isAdmin: true,
+        isSeller: true
         }
     ];
     return User.createAsync(users);

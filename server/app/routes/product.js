@@ -60,7 +60,7 @@ router.post('/:productId/reviews', function(req, res, next) {
     Review.create(req.body)
     .then(function (review) {
         reviewToAdd = review;
-        return Product.findById(req.params.productId)
+        return Product.findOne({_id: req.params.productId})
         .then(function(product) {
             product.reviews.push(reviewToAdd._id);
             return product.save();

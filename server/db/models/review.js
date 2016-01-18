@@ -5,18 +5,22 @@ var mongoose = require('mongoose');
 var reviewSchema = new mongoose.Schema({
     text:  {
         type: String,
-        required: true
+        required: true,
+        minlength: 50
     },
     date: {
         type: Date,
         default: Date.now
     },
     stars: {
-        type: Number
+        type: Number,
+        min: 0,
+        max: 5
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
     },
     product: {
         type: mongoose.Schema.Types.ObjectId,

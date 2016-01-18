@@ -37,9 +37,9 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
                         else return user;
                     })
                     .then(finalUser => {
-                        console.log("final:", finalUser);
                         scope.user = finalUser;
                     });
+
             };
 
             var removeUser = function () {

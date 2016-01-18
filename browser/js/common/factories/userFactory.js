@@ -22,7 +22,12 @@ app.factory('UserFactory', function ($http) {
                 return guestRes.data
             });
     }
-
+    UserFactory.register = function(newUserInfo) {
+        return $http.post('/api/users', newUserInfo)
+        .then(function(response) {
+            return response.data;
+        });
+    };
     UserFactory.createNewCart = function(id) {
         // takes a user ID
         return $http.post('/api/session-user/new-cart/' + id);
