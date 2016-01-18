@@ -10,10 +10,17 @@ var SellerProfile = new Schema({
     products: [{ type: Schema.Types.ObjectId, ref: 'Product'}],
     storeName: String
 });
+
 var UserSchema = new Schema({
     email: { type: String,
             unique: true,
-            required: true },
+            required: true,
+            validate: {
+                validator: function(e) {
+                    //Regex to check for valid email
+                    return (/[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/).test(e);
+                }
+            } },
     password: { type: String },
     name: { type: String },
     salt: { type: String },
@@ -74,6 +81,8 @@ UserSchema.pre('save', function (next) {
     next();
 
 });
+
+
 
 UserSchema.statics.generateSalt = generateSalt;
 UserSchema.statics.encryptPassword = encryptPassword;

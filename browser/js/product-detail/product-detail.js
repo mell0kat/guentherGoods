@@ -5,8 +5,9 @@ app.config(function($stateProvider) {
         controller: function($scope, product, user, $window, ReviewsFactory, ShoppingCartFactory, AuthService, $http) {
 
             $scope.product = product;
-            $scope.shoppingCart = user.shoppingCart;
 
+            $scope.shoppingCart = user.shoppingCart;
+            $scope.user = user;
             $scope.order = {
                     quantity: 1,
                     item: product._id,
@@ -22,7 +23,8 @@ app.config(function($stateProvider) {
                 $scope.addReviewClicked = true;
             };
             $scope.submitReview = function() {
-                ReviewsFactory.addReview($scope.review, product);
+
+                ReviewsFactory.addReview($scope.review, $scope.user, $scope.product);
             };
             $scope.reviews = product.reviews.map(function(review)  {
                 return review.text;
