@@ -11,7 +11,9 @@ var SellerProfile = new Schema({
     storeName: String
 });
 var UserSchema = new Schema({
-    email: { type: String },
+    email: { type: String,
+            unique: true,
+            required: true },
     password: { type: String },
     name: { type: String },
     salt: { type: String },
