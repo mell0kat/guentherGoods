@@ -17,11 +17,11 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <div ng-show="!user">
-                    <button class="btn login-button" ui-sref="login" ng-show="!user" >Login</button>
+                <div ng-show="user.isGuest">
+                    <button class="btn login-button" ui-sref="login">Login</button>
                     <button class="btn login-button" ui-sref="signup">Sign Up</button>
                 </div>
-                <div ng-show="user">
+                <div ng-show="!user.isGuest">
                     <a ng-click="logout()"><button class="btn login-button">Log Out</button></a>
                     <button class="btn login-button">My Account</button>
                 </div>
