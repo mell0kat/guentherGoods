@@ -21,6 +21,10 @@ app.factory('UserFactory', function ($http) {
             return response.data;
         });
     };
+    UserFactory.createNewCart = function(id) {
+        // takes a user ID
+        return $http.post('/api/session-user/new-cart/' + id);
+    }
 
     return UserFactory;
 });
