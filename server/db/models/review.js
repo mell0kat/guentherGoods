@@ -13,7 +13,9 @@ var reviewSchema = new mongoose.Schema({
         default: Date.now
     },
     stars: {
-        type: Number
+        type: Number,
+        min: 0,
+        max: 5
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
