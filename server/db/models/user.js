@@ -85,6 +85,9 @@ UserSchema.pre('save', function (next) {
         this.password = this.constructor.encryptPassword(this.password, this.salt);
     }
 
+    if (this.isGuest) {
+        this.email = "test" + Math.random() + "@gmail.com";
+    }
     next();
 
 });
