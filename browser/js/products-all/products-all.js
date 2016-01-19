@@ -39,7 +39,7 @@ app.config(function($stateProvider) {
         controller: function($scope, products, $stateParams) {
             $scope.matchedProducts = products.filter(function(item){
                 return (item.name.match($stateParams.searchQuery) || item.description.match($stateParams.searchQuery))
-            });    
+            });
         },
         resolve: {
             products: function($http, ProductsFactory) {
