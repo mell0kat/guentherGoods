@@ -32,7 +32,10 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
 
             scope.search = function (str){
                 var searchQuery = str;
+                
                 $state.go('productsSearch',{searchQuery: searchQuery});
+                
+                
             }
 
             var setUser = function () {
