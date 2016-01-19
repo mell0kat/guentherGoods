@@ -6,8 +6,8 @@
             </div>
             <div class="col-md-4">
                 <div class="input-group">
-                <input type="text" class="form-control" placeholder="Canz we search for teh anything?" aria-describedby="basic-addon2">
-                <span class="input-group-addon" id="basic-addon2">Search</span>
+                <input type="text" ng-model="query" class="form-control" placeholder="Canz we search for teh anything?" aria-describedby="basic-addon2">
+                <span class="input-group-addon" id="basic-addon2" ng-click="search(query)">Search</span>
                 </div>
             </div>
 
