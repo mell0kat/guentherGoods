@@ -21,9 +21,9 @@ app.config(function($stateProvider) {
             $scope.addReview =function() {
                 $scope.addReviewClicked = true;
             };
-            $scope.submitReview = function() {
+            $scope.submitReview = function(reviewToAdd) {
 
-                ReviewsFactory.addReview($scope.review, $scope.user, $scope.product);
+                ReviewsFactory.addReview(reviewToAdd, $scope.user, $scope.product);
             };
             $scope.reviews = product.reviews.map(function(review)  {
                 return review.text;

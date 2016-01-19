@@ -27,16 +27,17 @@
                                     <option>L</option>
                                 </select>
                             </div> 
+                            <button ng-show="product.quantity === 0">Out of stock</button>  
+                            <button ng-show="product.quantity > 0" ng-click="addToCart(shoppingCart, order)" class="btn btn-default">Add to Cart</button>
                     </div> 
                 </div>       
-                            <button ng-show="product.quantity === 0">Out of stock</button>  
-                            <button ng-click="addToCart(shoppingCart, order)" class="btn btn-default">Add to Cart</button>
+                           
 
                             <div class="product_reviews" ng-show="choice==='reviews'">
-                                <p>HELLO</p>
+                                
                                 <div ng-show="!product.reviews">No reviews yet, why not share yours?</div>
-                                <button class="btn btn-default" ng-click="addReview()">Add a Review</button>
-                                <form ng-show= "!addReviewClicked" name="userForm" ng-submit= "submitReview()">
+                                <button class="btn btn-default" id="align-right" ng-click="addReview()">Add a Review</button>
+                                <form ng-show= "addReviewClicked" name="userForm" ng-submit= "submitReview(review)">
                                     <div class="form-group">
                                         <textarea class="form-control" type="text" rows="3" name="review" ng-model="review.text" placeholder="meow" ng-minlength="50" required ></textarea>
                                         <div class="form-group">Stars:
