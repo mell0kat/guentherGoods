@@ -1,7 +1,7 @@
 app.factory('ProductsFactory', function ($http) {
 
 	var ProductsFactory = {};
-    var products; 
+    var products;
 
     ProductsFactory.tagsParser = function(string) {
         return string.split(",");
