@@ -108,33 +108,28 @@ var seedProducts = function() {
         {
         name: 'kittyRug',
         price: 25,
-        category: '5699282f2cac2390197af2e1',
         description: 'a soft place to stand',
         quantity: 5
        },
         {name: 'catmug',
         price: 5,
-        category: '5699282f2cac2390197af2e3',
         description: 'ncahhdhf',
         quantity: 3
 
        },
         {name: 'cat furniture',
         price: 25,
-        category: '5699282f2cac2390197af2e1',
         description: 'a sddf',
         quantity: 5
        },
         {name: 'catLeggings',
         price: 100,
-        category: '5699282f2cac2390197af2e2',
         description: 'super chic',
         quantity: 1
 
        },
         {name: 'Cat Oven Mits',
         price: 23,
-        category: '5699282f2cac2390197af2e1',
         description: 'so useful',
         quantity: 10
        }
@@ -142,61 +137,61 @@ var seedProducts = function() {
     return Product.createAsync(products);
 
 };
-var seedReviews = function() {
+// var seedReviews = function() {
 
-    var reviews = [
-        {
-        text: 'Kinda disappointing',
-        stars: 4,
-        user: '56957789130e61b223dd4e7a',
-        product: '569585a718e0a3955bdca5ae'
-       },
-        {
-        text: 'So awesome',
-        stars: 5,
-        user: '56957789130e61b223dd4e84',
-        product: '569585a718e0a3955bdca5ae'
-       }
-       ]
-    return Review.createAsync(reviews);
+//     var reviews = [
+//         {
+//         text: 'Kinda disappointing',
+//         stars: 4,
+//         user: '56957789130e61b223dd4e7a',
+//         product: '569585a718e0a3955bdca5ae'
+//        },
+//         {
+//         text: 'So awesome',
+//         stars: 5,
+//         user: '56957789130e61b223dd4e84',
+//         product: '569585a718e0a3955bdca5ae'
+//        }
+//        ]
+//     return Review.createAsync(reviews);
 
-};
+// };
 
-var seedCart = function() {
-    var cart = [
-        {
-            items: [
-                {
-                    //kitty rug
-                    quantity: 5,
-                    price: 25,
-                    item: '569585a718e0a3955bdca5ae'
-                },
-                {
-                    quantity: 3,
-                    price: 5,
-                    item: '569585a718e0a3955bdca5af'
-                },
-            ]
-        },
-        {
-            items: [
-                {   //cat furniture
-                    quantity: 3,
-                    price: 25,
-                    item: '569585a718e0a3955bdca5b0'
-                },
-                {   //cat leggings
-                    quantity: 2,
-                    price: 100,
-                    item: '569585a718e0a3955bdca5b1'
-                }
-            ]
-        }
-        ]
-    return ShoppingCart.createAsync(cart);
+// var seedCart = function() {
+//     var cart = [
+//         {
+//             items: [
+//                 {
+//                     //kitty rug
+//                     quantity: 5,
+//                     price: 25,
+//                     item: '569585a718e0a3955bdca5ae'
+//                 },
+//                 {
+//                     quantity: 3,
+//                     price: 5,
+//                     item: '569585a718e0a3955bdca5af'
+//                 },
+//             ]
+//         },
+//         {
+//             items: [
+//                 {   //cat furniture
+//                     quantity: 3,
+//                     price: 25,
+//                     item: '569585a718e0a3955bdca5b0'
+//                 },
+//                 {   //cat leggings
+//                     quantity: 2,
+//                     price: 100,
+//                     item: '569585a718e0a3955bdca5b1'
+//                 }
+//             ]
+//         }
+//         ]
+//     return ShoppingCart.createAsync(cart);
 
-}
+// }
 var seedCategory = function() {
     var category = [
         { name: 'Accessories'},
@@ -208,12 +203,13 @@ var seedCategory = function() {
     return Category.createAsync(category);
 }
 
-connectToDb.then(function () {
+connectToDb
+.then(function () {
     return User.findAsync({}).then(function (users) {
         if (users.length === 0) {
             return seedUsers();
         } else {
-            console.log(chalk.magenta('Seems to already be user data, exiting!'));
+            console.log(chalk.magenta('Seems to already be user data!'));
         }
     })
     .then(function () {
@@ -229,7 +225,7 @@ connectToDb.then(function () {
         if (category.length === 0) {
             return seedCategory();
         } else {
-            console.log(chalk.magenta('Seems to already be category data, exiting!'));
+            console.log(chalk.magenta('Seems to already be category data!'));
         }
     })
     .then(function () {
@@ -245,46 +241,48 @@ connectToDb.then(function () {
             return seedProducts();
         } else {
             console.log(chalk.magenta('Seems to already be product data, exiting!'));
-        }
-    })
-    .then(function () {
-        console.log(chalk.green('Seeding products successful!'));
-    }).catch(function (err) {
-        console.error(err);
-        process.kill(1);
-    })
-})
-.then(function(){
-    Review.findAsync({}).then(function (reviews) {
-        if (reviews.length === 0) {
-            return seedReviews();
-        } else {
-            console.log(chalk.magenta('Seems to already be review data, exiting!'));
-        }
-    })
-    .then(function () {
-        console.log(chalk.green('Seeding reviews successful!'));
-
-    }).catch(function (err) {
-        console.error(err);
-        process.kill(1);
-    })
-})
-.then(function(){
-    ShoppingCart.findAsync({}).then(function (cart) {
-        if (cart.length === 0) {
-            return seedCart();
-        } else {
-            console.log(chalk.magenta('Seems to already be shopping cart data, exiting!'));
             process.kill(0);
         }
     })
     .then(function () {
-        console.log(chalk.green('Seeding cart successful!'));
-        process.kill(1);
+        console.log(chalk.green('Seeding products successful!'));
+        process.kill(0);
     }).catch(function (err) {
         console.error(err);
         process.kill(1);
     })
 })
+// .then(function(){
+//     Review.findAsync({}).then(function (reviews) {
+//         if (reviews.length === 0) {
+//             return seedReviews();
+//         } else {
+//             console.log(chalk.magenta('Seems to already be review data, exiting!'));
+//         }
+//     })
+//     .then(function () {
+//         console.log(chalk.green('Seeding reviews successful!'));
+
+//     }).catch(function (err) {
+//         console.error(err);
+//         process.kill(1);
+//     })
+// })
+// .then(function(){
+//     ShoppingCart.findAsync({}).then(function (cart) {
+//         if (cart.length === 0) {
+//             return seedCart();
+//         } else {
+//             console.log(chalk.magenta('Seems to already be shopping cart data, exiting!'));
+//             process.kill(0);
+//         }
+//     })
+//     .then(function () {
+//         console.log(chalk.green('Seeding cart successful!'));
+//         process.kill(0);
+//     }).catch(function (err) {
+//         console.error(err);
+//         process.kill(1);
+//     })
+// })
 
