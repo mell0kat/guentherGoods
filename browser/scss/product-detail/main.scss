@@ -1,3 +1,4 @@
+
 .description{
 	margin-top: 50px;
 	margin-left: 20px;
@@ -26,6 +27,7 @@
 }
 
 #productPhoto  {
+	top: 102px;
     height: 550px;
     img {
         height: 100%;
@@ -37,6 +39,7 @@
 	float: right;
 }
 #productSummary {
+	top: 102px;
 	background-color: white;
     height: 550px; 
 }
