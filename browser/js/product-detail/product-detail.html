@@ -1,96 +1,71 @@
 <div class="container">
     <button ng-click="goBack()">back to products</button>
+    <h2>{{product.name}}</h2>
+    <div class="row">
+        <div class="col-xs-6" id="productPhoto"><img src="{{product.photo}}"/></div>
+        <div id="productSummary" class="col-xs-6">
+            <ul class="nav nav-tabs">
+                <li role="presentation" ng-class="{active: choice === 'description'}" ng-click="setTab('description')"><a>Description</a></li>
+                <li role="presentation" ng-class="{active: choice === 'reviews'}" ng-click="setTab('reviews')"><a>Reviews</a></li>
+            </ul>
 
-        <h2>{{product.name}}</h2>
-        <div class="row">
-            <div class="col-xs-6" id="productPhoto"><img src="{{product.photo}}"/></div>
-            <div id="productSummary" class="col-xs-6">
-               <ul class="nav nav-tabs">
-                 <li role="presentation" class="activeTabs" ng-click="setTab('description')"><a>Description</a></li>
-                 <li role="presentation" class="activeTabs" ng-click="setTab('reviews')"><a>Reviews</a></li>
-               </ul>
-               <div id="description" ng-show="choice!=='reviews'">
-
-                    <div class="description">{{product.price | currency }}
-                        </br></br>
-
-                    <label>Description:</label></br>
-                     {{product.description}}</br></br>
-                         <div class="form-group">
-                            <label>Quantity</label>
-
-                            <input type="number" class="input-quantity" ng-model="order.quantity"></input>
-                            <div ng-show="product.quantity < 5 && product.quantity > 0">Hurry, only
-                            {{product.quantity}} items left!</div>
-                        </div>
-
-                        <div class="form-group" ng-show="product.category === 'Clothing'">
-                            <label>size</label>
-                            <select ng-model="order.size">
-                                <option>S</option>
-                                <option>M</option>
-                                <option>L</option>
-                            </select>
-                        </div>
-                     <!--TODO: we might be able to refactor the button to higher-order functionality-->
-                        <div ng-show="product.quantity > 0">
-                          <button ng-click="addToCart(order)"class="btn btn-default">Add to Cart</button>
-                        </div>
-                        <div ng-show="product.quantity === 0 ">
-                          <button disabled class="btn btn-danger">Out of Stock</button>
-                        </div>
-                      <br />
-            </div>
-
-            <div class="product_reviews" ng-show="choice==='reviews'">
-                <div ng-show="!product.reviews">No reviews yet, why not share yours?</div>
-
-                <button class="review-button" ng-click="addReview()">Add a Review</button>
-                <form ng-show= "addReviewClicked" name="userForm" ng-submit= "submitReview()">
-                    <div class="form-group">
-                        <label>size</label>
-                        <select ng-model="order.size">
-                            <option>S</option>
-                            <option>M</option>
-                            <option>L</option>
-                        </select>
-                    </div>
-                    <p>Description: {{product.description}}</p>
-                 <!--TODO: we might be able to refactor the button to higher-order functionality-->
-                    <!--<button ng-click="addToCart(order)" class="btn btn-default">Add to Cart</button>-->
-                </div>
-                        <textarea class="form-control" rows="3" name="review" ng-model="review" placeholder="meow" ng-minlength="50" required ></textarea>
-
-                            <div class="form-group" ng-model="review.stars">Stars:
-                                <label class="radio-inline">
-                                   <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4"> 4
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option5"> 5
-                                </label>
+            <div class="tab-content">
+                <div id="description" ng-show="choice!=='reviews'">
+                    <div class="description">{{product.price | currency }}</br></br>
+                        <label>Description:</label></br>{{product.description}}</br></br>
+                            <div class="form-group">
+                                <label>Quantity</label>
+                                <input type="number" class="input-quantity" ng-model="order.quantity"></input>
+                                <div ng-show="product.quantity < 5 && product.quantity > 0">Hurry, only
+                                {{product.quantity}} items left!</div>
                             </div>
-                        <button ng-click="submitReview()" type="submit" id="submit" value="Submit">Submit</button>
+                            <div class="form-group" ng-show="product.category === 'Clothing'">
+                                <label>size</label>
+                                <select ng-model="order.size">
+                                    <option>S</option>
+                                    <option>M</option>
+                                    <option>L</option>
+                                </select>
+                            </div> 
+                            <button ng-show="product.quantity === 0">Out of stock</button>  
+                            <button ng-click="addToCart(shoppingCart, order)" class="btn btn-default">Add to Cart</button>
+
+                            <div class="product_reviews" ng-show="choice==='reviews'">
+                                <div ng-show="!product.reviews">No reviews yet, why not share yours?</div>
+                                <button class="review-button" ng-click="addReview()">Add a Review</button>
+                                <form ng-show= "addReviewClicked" name="userForm" ng-submit= "submitReview()">
+                                    <div class="form-group">
+                                        <textarea class="form-control" type="text" rows="3" name="review" ng-model="review.text" placeholder="meow" ng-minlength="50" required ></textarea>
+                                        <div class="form-group">Stars:
+                                            <label class="radio-inline">
+                                                <input ng-model="review.stars" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1"> 1
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input ng-model="review.stars" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2"> 2
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input ng-model="review.stars" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="3"> 3
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input ng-model="review.stars" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="4"> 4
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input ng-model="review.stars" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="5"> 5
+                                            </label>
+                                        </div>   
+                                        <button type="submit" id="submit" value="Submit">Submit</button>
+                                        
+                                    </div>
+                                </form>
+
+                                <span ng-show="userForm.review.$error.minlength && userForm.review.$touched">Your review must be at least 50 chars</span>
+                                <div ng-repeat="review in product.reviews | orderBy: '-date'">
+                                    <div class="reviewbox"><strong>{{user.email}}</strong>&emsp;&emsp;{{review.date | date:'MMMM d, y'}}&emsp;&emsp; stars:{{review.stars}}</br>
+                                    {{review.text}}
+                                    </div>
+                                </div>
+                            </div>
                     </div>
-                    </form>
-
-
-
-                <span ng-show="userForm.review.$error.minlength && userForm.review.$touched">Your review must be at least 50 chars</span>
-                <div ng-repeat="review in product.reviews | orderBy: '-date'">
-                    <div class="reviewbox">{{review.user}}{{review.stars}}{{review.date | date:'MMMM d, y'}}</br>
-                    {{review.text}}
-                    </div>
-
-
                 </div>
             </div>
         </div>
