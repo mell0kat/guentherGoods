@@ -4,6 +4,7 @@ app.config(function($stateProvider){
         templateUrl: 'js/user-page/user-page.html',
         controller: function($scope, AuthService, $state, user){
             $scope.user = user;
+            console.log($scope.user);
             $scope.goToUsers = function () {
                 if ($scope.user.isAdmin) $state.go('userList');
                 else $state.go('/');
@@ -22,8 +23,11 @@ app.config(function($stateProvider){
             };
         },
         resolve: {
-            user: function (AuthService) {
-                return AuthService.getLoggedInUser();
+            user: function (AuthService, UserFactory) {
+                return AuthService.getLoggedInUser()
+                .then(function(user) {
+                    return UserFactory.fetchUserById(user._id);
+                })
             }
         }
     });

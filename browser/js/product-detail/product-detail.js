@@ -2,7 +2,7 @@ app.config(function($stateProvider) {
     $stateProvider.state('productDetail', {
         url: '/productDetail/:id',
         templateUrl: 'js/product-detail/product-detail.html',
-        controller: function($scope, $rootScope, product, user, $window, ReviewsFactory, ShoppingCartFactory) {
+        controller: function($scope, $state, $rootScope, product, user, $window, ReviewsFactory, ShoppingCartFactory) {
             $scope.product = product;
 
             $scope.shoppingCart = user.shoppingCart;
@@ -34,6 +34,10 @@ app.config(function($stateProvider) {
                     .then(() => {
                         $scope.goBack();
                     });
+            }
+
+            $scope.editProd = function(productId) {
+                $state.go('productEdit', {id: productId});
             }
         },
         resolve : {

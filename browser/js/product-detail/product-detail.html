@@ -1,6 +1,6 @@
 <div class="container">
     <button ng-click="goBack()">back to products</button>
-    <h2>{{product.name}}</h2><a ng-show="user.isAdmin || (user.isSeller && user._id === product.seller" ng-click="editProd(product._id)">Edit this product</a>
+    <h2>{{product.name}}</h2><a ng-show="user.isAdmin || (user.isSeller && user._id === product.seller)" ng-click="editProd(product._id)">Edit this product</a>
     <div class="row">
         <div class="col-xs-6" id="productPhoto"><img src="{{product.photo}}"/></div>
         <div id="productSummary" class="col-xs-6">
@@ -64,7 +64,7 @@
 
                                 <span ng-show="userForm.review.$error.minlength && userForm.review.$touched">Your review must be at least 50 chars</span>
                                 <div ng-repeat="review in product.reviews | orderBy: '-date'">
-                                    <div class="reviewbox"><strong>{{user.email}}</strong>&emsp;&emsp;{{review.date | date:'MMMM d, y'}}&emsp;&emsp; stars:{{review.stars}}</br>
+                                    <div class="reviewbox"><strong>{{review.user.email}}</strong>&emsp;&emsp;{{review.date | date:'MMMM d, y'}}&emsp;&emsp; stars:{{review.stars}}</br>
                                     {{review.text}}
                                     </div>
                                 </div>

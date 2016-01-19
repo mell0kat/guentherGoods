@@ -1,6 +1,7 @@
 'use strict';
 
 var mongoose = require('mongoose');
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
 
 
 var productSchema = new mongoose.Schema({
@@ -47,6 +48,8 @@ var productSchema = new mongoose.Schema({
         type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Review' }]
     }
 });
+
+productSchema.plugin(deepPopulate);
 
 productSchema.virtual('inStock').get(function() {
     return this.quantity > 0;

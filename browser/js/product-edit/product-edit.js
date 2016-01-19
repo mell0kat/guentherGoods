@@ -6,6 +6,7 @@ app.config(function($stateProvider) {
             $scope.product = product;
             $scope.user = user;
 
+
         },
         resolve : {
             product: function($stateParams, ProductsFactory) {
