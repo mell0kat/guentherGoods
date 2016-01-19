@@ -1,4 +1,4 @@
-app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, UserFactory) {
+app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, UserFactory, ProductsFactory) {
 
     return {
         restrict: 'E',
@@ -29,6 +29,11 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
                    $state.go('home');
                 });
             };
+
+            scope.search = function (str){
+                var searchQuery = str;
+                $state.go('productsSearch',{searchQuery: searchQuery});
+            }
 
             var setUser = function () {
                 AuthService.getLoggedInUser()
