@@ -28,6 +28,9 @@ navbar {
   a {
     color: black;
     font-size: 16px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 101;
+    letter-spacing: 1.9px;
   }
 
   .input-group{
@@ -51,6 +54,7 @@ navbar {
   .nav > li > a {
     cursor: pointer;
     transition: color 0.2s;
+
     &.active {
       color: darken(#f31214, 10%);
     }
@@ -67,9 +71,12 @@ navbar {
     margin-top: 10px;
     margin-left: 5px;
     float: right;
-    border: 1px solid   #C0C0C0;
+    border: 0px solid   #C0C0C0;
     background: none;
     clear: none;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 101;
+    letter-spacing: 1.6px;
     &:hover {
       background: #F0F8FF;
     }
@@ -82,6 +89,10 @@ navbar {
     border: none;
     background: none;
     clear: none;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 101;
+    letter-spacing: 1.2px;
+    color: #8c8c8c;
   }
 
   .cart-button {

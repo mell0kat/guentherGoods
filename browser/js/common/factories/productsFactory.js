@@ -1,8 +1,9 @@
 app.factory('ProductsFactory', function ($http) {
 
 	var ProductsFactory = {};
+    var products; 
 
-   ProductsFactory.tagsParser = function(string) {
+    ProductsFactory.tagsParser = function(string) {
         return string.split(",");
     };
 
@@ -17,7 +18,8 @@ app.factory('ProductsFactory', function ($http) {
     ProductsFactory.fetchAll = function(){
         return $http.get('/api/products')
          .then(function(response){
-            return response.data;
+            products = response.data;
+            return products;
         });
     };
 

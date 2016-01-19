@@ -59,6 +59,7 @@
         function onSuccessfulLogin(response) {
             var data = response.data;
             Session.create(data.id, data.user);
+            //TODO: return guest user if no response.
             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
             return data.user;
         }
