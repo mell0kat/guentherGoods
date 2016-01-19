@@ -23,7 +23,7 @@ var productSchema = new mongoose.Schema({
     },
     photo: {
         type: String,
-        default: 'http://i1382.photobucket.com/albums/ah279/npalenchar/Photo%20not%20found%20icon_zpsomlpbtal.png'
+        default: 'http://i1382.photobucket.com/albums/ah279/npalenchar/dali-notfound_zpsize0zlfm.jpg'
     },
     quantity: {
         type: Number,
