@@ -34,7 +34,7 @@ app.config(function($stateProvider) {
 
 app.config(function($stateProvider) {
     $stateProvider.state('productsSearch', {
-        url:'/products/:searchQuery',
+        url:'/products/search/:searchQuery',
         templateUrl: 'js/products-all/products-search.html',
         controller: function($scope, products, $stateParams) {
             $scope.matchedProducts = products.filter(function(item){
