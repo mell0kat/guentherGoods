@@ -42,7 +42,15 @@ router.get('/:productId', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
     Product.create(req.body)
-    .then( createdProduct => res.status(201).json(createdProduct))
+    .then( createdProduct => {
+        if (createdProduct.seller) {
+            User.findById(createdProduct.seller._id)
+            .then(function(foundUser){
+                foundUser.sellerProfile.products.push(createdProduct._id);
+            })
+        }
+        res.status(201).json(createdProduct)
+    })
     .then(null, next);
 });
 

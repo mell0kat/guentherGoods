@@ -10,7 +10,7 @@ app.config(function($stateProvider){
                 else $state.go('/');
             };
             $scope.goToProducts = function () {
-                if ($scope.user.isAdmin) $state.go('products');
+                if ($scope.user.isAdmin || $scope.user.isSeller) $state.go('products');
                 else $state.go('/');
             };
             $scope.goToAddUsers = function() {
@@ -18,7 +18,7 @@ app.config(function($stateProvider){
                 else $state.go('/');
             };
             $scope.goToAddProducts = function() {
-                if ($scope.user.isAdmin) $state.go('productCreate');
+                if ($scope.user.isAdmin || $scope.user.isSeller) $state.go('productCreate');
                 else $state.go('/');
             };
         },

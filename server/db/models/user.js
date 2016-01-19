@@ -5,6 +5,7 @@ var _ = require('lodash');
 var Product = require('./product');
 //var Shopp require('./shoppingcart');
 var ShoppingCartSchema = require('./shoppingcart').cart;
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
 
 var SellerProfile = new Schema({
     products: [{ type: Schema.Types.ObjectId, ref: 'Product'}],
@@ -49,6 +50,7 @@ var UserSchema = new Schema({
 
 });
 
+UserSchema.plugin(deepPopulate);
 // addToHistory also empties out the shopping cart (creates a new empty cart)
 UserSchema.methods.addToHistory = function(orderId){
     var thisUser = this;
