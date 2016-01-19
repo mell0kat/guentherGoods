@@ -15,6 +15,17 @@
 	
 }
 
+.productTitle {
+	margin-top: 10%;
+	margin-bottom: none;
+	h2 { 
+    	color: gray;
+    	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    	font-weight: 100;
+    	letter-spacing: 1.9px;
+	}
+}
+
 .reviewbox {
 	border-bottom: 1px solid #D3D3D3;
 	padding-top:10px;
@@ -27,7 +38,6 @@
 }
 
 #productPhoto  {
-	top: 102px;
     height: 550px;
     img {
         height: 100%;
@@ -39,12 +49,11 @@
 	float: right;
 }
 #productSummary {
-	top: 102px;
 	background-color: white;
     height: 550px; 
 }
 
-h2 {
+h2 { 
     color: red;
 }
 

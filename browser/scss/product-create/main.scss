@@ -1,7 +1,55 @@
 
 #productCreateForm > form {
-	top: 102px;
-    background:red;
-    display: inline-block;
-    margin-left:50%;
+	margin-top: 200px;
+	margin-left:35%;
+	padding-top: 20px;
+	padding-left: 10px;
+    background: silver;
+    height: 500px;
+    width: 600px;
+    display: block;
+    
+}
+
+.formRow {
+	display: inline-block;
+	margin-bottom: 20px;
+	padding-left: 20px;
+	padding-top: 20px;
+	width: 550px;
+	height: 20px;
+
+	
+}
+.formRow2 {
+	display: inline-block;
+	margin-bottom: 20px;
+	padding-left: 475px;
+	padding-top: 20px;
+	width: 550px;
+	height: 20px;
+
+	
+}
+
+.formRow3 {
+	display: inline-block;
+	margin-bottom: 10px;
+	padding-left: 20px;
+	width: 550px;
+	height: 20px;
+	h2 {
+		color: black;
+	}
+
+	
+}
+
+.inputBox {
+	float: right;
+	clear: right;
+	width: 400px;
+	margin-right: 5px;
+
+
 }
