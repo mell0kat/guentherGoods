@@ -26,7 +26,6 @@ router.use(function(req, res, next){
             })
             .then(confirmedGuestUser => {
                 req.body.guestUser = confirmedGuestUser;
-                console.log('[routes/cookies] guest user? ', confirmedGuestUser);
                 next();
             })
             .then(null, next);
