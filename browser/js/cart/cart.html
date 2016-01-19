@@ -4,7 +4,7 @@
       <h1>Cat Cart<span class="align-right"><button class="align-right btn btn-success">Checkout</button></span></h1>
       <h4 style="color: red; font-family: monospace;">Developer View - need to display english product info.</h4>
       <div ng-repeat="product in user.shoppingCart.items">
-        <h3>product: {{product}}</h3>
+        <h3>product: {{productDetail(product)}}</h3>
         <product-listing class="col-xs-4"></product-listing>
       </div>
     </div>
