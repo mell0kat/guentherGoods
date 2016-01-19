@@ -30,7 +30,7 @@
                             <button ng-show="product.quantity === 0">Out of stock</button>  
                             <button ng-click="addToCart(shoppingCart, order)" class="btn btn-default">Add to Cart</button>
 
-                            <div class="product_reviews" ng-show="choice==='reviews'" >
+                            <div class="product_reviews" ng-show="choice==='reviews'">
                                 <div ng-show="!product.reviews">No reviews yet, why not share yours?</div>
                                 <button class="review-button" ng-click="addReview()">Add a Review</button>
                                 <form ng-show= "addReviewClicked" name="userForm" ng-submit= "submitReview()">
@@ -52,15 +52,9 @@
                                             <label class="radio-inline">
                                                 <input ng-model="review.stars" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="5"> 5
                                             </label>
-                                        </div>
-                                            {{review.stars}}   
+                                        </div>   
                                         <button type="submit" id="submit" value="Submit">Submit</button>
-                                        <div ng-show="product.quantity > 0">
-                                            <button ng-click="addToCart(order)"class="btn btn-default">Add to Cart</button>
-                                        </div>
-                                        <div ng-show="product.quantity === 0 ">
-                                            <button disabled class="btn btn-danger">Out of Stock</button>
-                                        </div>
+                                        
                                     </div>
                                 </form>
 
