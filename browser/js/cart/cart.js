@@ -6,6 +6,7 @@ app.config(function($stateProvider){
             AuthService.getLoggedInUser()
                 .then(user => console.log("[browser/js/cart.js] user: ", user));
             $scope.user = user;
+
         },
         resolve: {
             user: function(AuthService, UserFactory){
