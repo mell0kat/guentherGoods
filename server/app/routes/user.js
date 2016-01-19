@@ -13,7 +13,7 @@ router.get('/', function (req, res, next) {
 // lookup a user's account
 router.get('/:id', function (req, res, next) {
     User.findOne({_id: req.params.id})
-        .populate('reviews')
+        .populate('reviews SellerProfile history')
         .then(function (user) {
             console.log('[routes/user] found user:', user);
             if (!user) res.status(404).send('User not found!');
