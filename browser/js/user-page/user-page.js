@@ -16,7 +16,7 @@ app.config(function($stateProvider){
                 if ($scope.user.isAdmin) $state.go('userAdd');
                 else $state.go('/');
             };
-            $scope.goToAddUsers = function() {
+            $scope.goToAddProducts = function() {
                 if ($scope.user.isAdmin) $state.go('productCreate');
                 else $state.go('/');
             };
