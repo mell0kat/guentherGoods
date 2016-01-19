@@ -1,14 +1,22 @@
-<h1>Hello</h1>
-{{user.shoppingCart.items}}
-<div  class="container">
-    <div ng-repeat="item in user.shoppingCart.items" class="row">
-        <div class="col-xs-4">{{item.item}}Placeholder item name</div>
-        <div class="col-xs-4">{{item.purchasePrice}}Placeholder item price</div>
-        <div class="col-xs-4">{{item.quantity}}placeholder item quantity</div>
-    </div>
+
+<div id="checkout" class="container">
+    <div class="row"><h2>Your Order</h2>
+        <hr>
+        <div ng-repeat="item in user.shoppingCart.items" >
+            <div class="col-xs-4">{{item.item}}Placeholder item name</div>
+            <div class="col-xs-4">{{item.purchasePrice}}Placeholder item price</div>
+            <div class="col-xs-4">{{item.quantity}}placeholder item quantity</div>
+        </div>
+        <hr>
+        </div>
+
+    <div class="row"><h2>Shipping Details</h2></div>
+    Placeholder address
+    <div class="row"><h2>Billing Details</h2></div>
     <button class="align-right btn btn-success">Submit order!</button>
-    ITEM
 </div>
 </br>
-Placeholder address
-<p>Goodbye</p>
+
+{{user.shoppingCart}}
+
+
