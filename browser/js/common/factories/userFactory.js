@@ -33,6 +33,19 @@ app.factory('UserFactory', function ($http) {
         return $http.post('/api/session-user/new-cart/' + id);
     };
 
+
+    UserFactory.createNewOrder = function(user) {
+        return $http.post('/api/orders/', {
+            order : {
+                shoppingCart: user.shoppingCart._id,
+                address: user.address,
+                user: user._id
+            },
+            user: user
+        });
+
+    };
+
     UserFactory.fetchSellerProducts = function(id) {
         return $http.get('/api/products/seller/'+id)
         .then(function(response){

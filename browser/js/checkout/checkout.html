@@ -20,18 +20,20 @@
 
 
     <div class="row"><h2>Shipping Details</h2></div>
-    {{user.name}}<br>
-    {{user.addressStreet}} <br>
-    {{user.addressCity}},
-    {{user.addressState}}
-    {{user.addressZip}}
+    {{user.address.name}}<br>
+    {{user.address.street1}} <br>
+    {{user.address.street2}} <br>
+    {{user.address.city}},
+    {{user.address.state}}
+    {{user.address.zip}}
     <div class="row"><h2>Billing Details</h2></div>
-    {{user.name}}<br>
-    {{user.addressStreet}} <br>
-    {{user.addressCity}},
-    {{user.addressState}}
-    {{user.addressZip}}
-    <button class="align-right btn btn-success">Submit order!</button>
+    {{user.address.name}}<br>
+    {{user.address.street1}} <br>
+    {{user.address.street2}} <br>
+    {{user.address.city}},
+    {{user.address.state}}
+    {{user.address.zip}}
+    <button class="align-right btn btn-success" ng-click="submitOrder(user)">Submit order!</button>
 </div>
 </br>
 

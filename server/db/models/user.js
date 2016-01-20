@@ -42,8 +42,15 @@ var UserSchema = new Schema({
     reviews: [{ type: Schema.Types.ObjectId, ref: 'Review'}],
     history: [{ type: Schema.Types.ObjectId, ref: 'Order'}],
     // TODO [time permitting] - History, Wishlist prop., Inbox
-    sellerProfile: [{type: Schema.Types.ObjectId, ref: 'Product'}],
-    address: String
+
+    address: { street1: {type: String},
+            street2: {type: String},
+            city: {type: String},
+            state: {type: String},
+            zip: {type: String},
+            country: {type: String}
+            },
+    sellerProfile: [{type: Schema.Types.ObjectId, ref: 'Product'}]
 
 });
 

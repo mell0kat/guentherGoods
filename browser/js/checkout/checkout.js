@@ -2,11 +2,16 @@ app.config(function($stateProvider) {
     $stateProvider.state('checkout', {
         url: '/checkout',
         templateUrl: 'js/checkout/checkout.html',
-        controller: function($scope, user) {
+        controller: function($scope, user, UserFactory,  $state) {
 
             $scope.user = user;
-            console.log($scope, "SCOPE IN CHECKOUT")
-            console.log($scope.user.shoppingCart, "SCOPE CART IN CHECKOUT")
+            $scope.submitOrder = function(user) {
+                return UserFactory.createNewOrder(user)
+                .then(function(order){
+                    console.log(order,"ORDER HERE")
+                    $state.go('orderSubmitted');
+                })
+            }
 
         },
         resolve: {
