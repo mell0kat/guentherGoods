@@ -1,5 +1,8 @@
 var router = require('express').Router();
+var mongoose = require('mongoose');
 var User = require('mongoose').model('User');
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
+
 
 // get all users
 router.get('/', function (req, res, next) {
@@ -13,7 +16,7 @@ router.get('/', function (req, res, next) {
 // lookup a user's account
 router.get('/:id', function (req, res, next) {
     User.findOne({_id: req.params.id})
-        .populate('reviews')
+        .deepPopulate('reviews history sellerProfile.items')
         .then(function (user) {
             if (!user) res.status(404).send('User not found!');
             else res.status(200).send(user);

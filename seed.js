@@ -199,11 +199,11 @@ var seedProducts = function() {
 // }
 var seedCategory = function() {
     var category = [
-        { name: 'Accessories'},
-        { name: 'Apartment'},
-        { name: 'Clothing'},
-        { name: 'Bookstore'},
-        { name: 'For your Cat'}
+        { name: "Accessories"},
+        { name: "Apartment"},
+        { name: "Clothing"},
+        { name: "Bookstore"},
+        { name: "For Your Cat"}
         ];
     return Category.createAsync(category);
 }

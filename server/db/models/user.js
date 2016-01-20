@@ -4,13 +4,10 @@ var Schema = mongoose.Schema;
 var _ = require('lodash');
 var Product = require('./product');
 //var Shopp require('./shoppingcart');
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
+
 var ShoppingCartSchema = require('./shoppingcart').cart,
     ProductSchema = require('./product').product;
-
-var SellerProfile = new Schema({
-    products: [{ type: Schema.Types.ObjectId, ref: 'Product'}],
-    storeName: String
-});
 
 var UserSchema = new Schema({
     email: { type: String,
@@ -45,11 +42,12 @@ var UserSchema = new Schema({
     reviews: [{ type: Schema.Types.ObjectId, ref: 'Review'}],
     history: [{ type: Schema.Types.ObjectId, ref: 'Order'}],
     // TODO [time permitting] - History, Wishlist prop., Inbox
-    sellerProfile: SellerProfile,
+    sellerProfile: [{type: Schema.Types.ObjectId, ref: 'Product'}],
     address: String
 
 });
 
+UserSchema.plugin(deepPopulate);
 // addToHistory also empties out the shopping cart (creates a new empty cart)
 UserSchema.methods.addToHistory = function(orderId){
     var thisUser = this;

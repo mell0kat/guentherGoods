@@ -2,6 +2,10 @@ var router = require('express').Router();
 var Product = require('mongoose').model('Product');
 var Review = require('mongoose').model('Review');
 var Category = require('mongoose').model('Category');
+var User = require('mongoose').model('User');
+var deepPopulate = require('mongoose-deep-populate')(require('mongoose'));
+
+
 
 module.exports = router;
 
@@ -26,7 +30,7 @@ router.get('/categories', function(req, res, next) {
 
 router.get('/:productId', function(req, res, next) {
     Product.findById(req.params.productId)
-    .populate('reviews')
+    .deepPopulate('reviews.user.email')
     .then( product => {
         if (!product) res.sendStatus(404);
         else res.json(product);
@@ -36,9 +40,23 @@ router.get('/:productId', function(req, res, next) {
     });
 });
 
+router.get('/seller/:sellerId', function(req, res, next) {
+    Product.find({seller: req.params.sellerId})
+    .then(products => res.json(products));
+})
+
 router.post('/', function(req, res, next) {
     Product.create(req.body)
-    .then( createdProduct => res.status(201).json(createdProduct))
+    .then( createdProduct => {
+        if (createdProduct.seller) {
+            User.findById(createdProduct.seller._id)
+            .then(function(foundUser){
+                foundUser.sellerProfile.push(createdProduct._id);
+                foundUser.save();
+            })
+        }
+        res.status(201).json(createdProduct)
+    })
     .then(null, next);
 });
 
@@ -64,6 +82,13 @@ router.post('/:productId/reviews', function(req, res, next) {
         .then(function(product) {
             product.reviews.push(reviewToAdd._id);
             return product.save();
+        })
+        .then(function() {
+            return User.findOne({_id: review.user})
+            .then(function(user) {
+                user.reviews.push(reviewToAdd._id);
+                return user.save();
+            })
         })
     })
     .then(function() {

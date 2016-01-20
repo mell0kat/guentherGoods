@@ -33,5 +33,12 @@ app.factory('UserFactory', function ($http) {
         return $http.post('/api/session-user/new-cart/' + id);
     };
 
+    UserFactory.fetchSellerProducts = function(id) {
+        return $http.get('/api/products/seller/'+id)
+        .then(function(response){
+            return response.data;
+        });
+    };
+
     return UserFactory;
 });
