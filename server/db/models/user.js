@@ -4,7 +4,8 @@ var Schema = mongoose.Schema;
 var _ = require('lodash');
 var Product = require('./product');
 //var Shopp require('./shoppingcart');
-var ShoppingCartSchema = require('./shoppingcart').cart;
+var ShoppingCartSchema = require('./shoppingcart').cart,
+    ProductSchema = require('./product').product;
 
 var SellerProfile = new Schema({
     products: [{ type: Schema.Types.ObjectId, ref: 'Product'}],
@@ -38,7 +39,7 @@ var UserSchema = new Schema({
     shoppingCart: {
         type: ShoppingCartSchema,
         default: {
-            items: []
+            items: [ProductSchema],
         }
     },
     reviews: [{ type: Schema.Types.ObjectId, ref: 'Review'}],
