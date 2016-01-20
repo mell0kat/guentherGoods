@@ -3,16 +3,17 @@
 	margin-top: 50px;
 	margin-left: 20px;
 	height: 460px;
-	background-color: white;
+	background-color: #DCDCDC;
 }
 
 .product_reviews{
-	margin-top: 20px;
-	margin-left: 20px;
+	margin-top: 10px;
+	margin-left: 0px;
+	width: 100%;
 	height: 480px;
 	max-height: 480px;
+	background-color: 	#DCDCDC;
 	overflow: scroll;
-	
 }
 
 .productTitle {
@@ -27,14 +28,13 @@
 }
 
 .reviewbox {
+	margin-top: 30px;
+	width: 90%;
 	border-bottom: 1px solid #D3D3D3;
 	padding-top:10px;
 	padding-bottom: 20px;
 	padding-left: 10px;
-}
-
-.review-button {
-	float: right;
+	padding-right: 10px;	
 }
 
 #productPhoto  {
@@ -47,9 +47,10 @@
 
 #align-right{
 	float: right;
+	margin-right: 5%;
 }
 #productSummary {
-	background-color: white;
+	background-color: 	#DCDCDC;
     height: 550px; 
 }
 
@@ -61,27 +62,23 @@ h2 {
 	max-width: 40px;
 }
 
+.active {
+	background-color: purple;
+}
 .nav-tabs{
 	border: none;
-  /*background-color: white;*/
+	background-color: none;
 }
 .nav-tabs > li {
-  	background-color: white;
+  	background-color: 	#DCDCDC;
   	border: none;
-    /*border: medium silver;
-    border-radius: 0;*/
-/*    color:#fff;*/
 }
 
-.nav-tabs.active {
-	background-color: white;
+.nav-tabs > :active {
+	color: red;
 	border: none;
 }
 
-.nav-tabs > li.active{
-  	/*background-color: red !important;*/
-  	background-color: white;
+.nav-tabs > li:active{
     border: none;
-    
-    /*color:#fff;*/
 }
