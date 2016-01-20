@@ -16,7 +16,7 @@ router.get('/', function (req, res, next) {
 // lookup a user's account
 router.get('/:id', function (req, res, next) {
     User.findOne({_id: req.params.id})
-        .deepPopulate('reviews history sellerProfile.products')
+        .deepPopulate('reviews history sellerProfile.items')
         .then(function (user) {
             if (!user) res.status(404).send('User not found!');
             else res.status(200).send(user);

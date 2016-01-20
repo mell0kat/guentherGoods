@@ -15,7 +15,7 @@
         </div>
         <div ng-repeat="review in user.reviews">
             <ul>
-                <li>{{review}}</li>
+                <li>{{review.text}}</li>
             </ul>
         </div>
     </div>
@@ -25,8 +25,8 @@
         </div>
         <div>
             <h3>Your Products</h3>
-            <ul ng-repeat="product in user.SellerProfile.products">
-                <li>{{product}}</li>
+            <ul ng-repeat="product in sellerProducts">
+                <li>{{product.name}} - {{product.price}} <a href="/product/edit/{{product._id}}">Edit this product</a></li>
             </ul>
             <button class="btn" ng-click="goToAddProducts()">Add Products</button>
         </div>
