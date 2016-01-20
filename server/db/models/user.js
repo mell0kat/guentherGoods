@@ -9,11 +9,6 @@ var deepPopulate = require('mongoose-deep-populate')(mongoose);
 var ShoppingCartSchema = require('./shoppingcart').cart,
     ProductSchema = require('./product').product;
 
-var SellerProfile = new Schema({
-    products: [{ type: Schema.Types.ObjectId, ref: 'Product'}],
-    storeName: String
-});
-
 var UserSchema = new Schema({
     email: { type: String,
             unique: true,
@@ -47,14 +42,16 @@ var UserSchema = new Schema({
     reviews: [{ type: Schema.Types.ObjectId, ref: 'Review'}],
     history: [{ type: Schema.Types.ObjectId, ref: 'Order'}],
     // TODO [time permitting] - History, Wishlist prop., Inbox
-    sellerProfile: SellerProfile,
+
     address: { street1: {type: String},
             street2: {type: String},
             city: {type: String},
             state: {type: String},
             zip: {type: String},
             country: {type: String}
-            }
+            },
+    sellerProfile: [{type: Schema.Types.ObjectId, ref: 'Product'}]
+
 });
 
 UserSchema.plugin(deepPopulate);

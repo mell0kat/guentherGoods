@@ -33,6 +33,7 @@ app.factory('UserFactory', function ($http) {
         return $http.post('/api/session-user/new-cart/' + id);
     };
 
+
     UserFactory.createNewOrder = function(user) {
         return $http.post('/api/orders/', {
             order : {
@@ -43,7 +44,14 @@ app.factory('UserFactory', function ($http) {
             user: user
         });
 
-        // return $http
-    }
+    };
+
+    UserFactory.fetchSellerProducts = function(id) {
+        return $http.get('/api/products/seller/'+id)
+        .then(function(response){
+            return response.data;
+        });
+    };
+
     return UserFactory;
 });
