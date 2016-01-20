@@ -1,6 +1,6 @@
 <div class="container">
     
-    <div class="productTitle"><button class="btn" ng-click="goBack()">back to products</button><h2>{{product.name}}</h2></div>
+    <div class="productTitle"><a ng-show="user.isAdmin || (user.isSeller && user._id === product.seller)" ng-click="editProd(product._id)">Edit this product</a>&emsp;<button class="btn-default" ng-click="goBack()">back to products</button><h2>{{product.name}}</h2></div>
     <div class="row">
         <div class="col-xs-6" id="productPhoto"><img src="{{product.photo}}"/></div>
         <div id="productSummary" class="col-xs-6">
@@ -29,7 +29,8 @@
                                 </select>
                             </div> 
                             <button ng-show="product.quantity === 0">Out of stock</button>  
-                            <button ng-show="product.quantity > 0" ng-click="addToCart(order)" class="btn btn-default">Add to Cart</button>
+                            <button ng-show="product.quantity > 0" ng-click="addToCart(order)" class="btn-cat">add to cat</button>
+                            <div class="neatCat"><img src="http://i1382.photobucket.com/albums/ah279/npalenchar/Cat%20neat_zpspq050zod.png"/></div>
                     </div> 
                 </div>       
                            
@@ -37,7 +38,7 @@
                             <div class="product_reviews" ng-show="choice==='reviews'">
                                 
                                 <div ng-show="!product.reviews">No reviews yet, why not share yours?</div>
-                                <button class="btn btn-default" id="align-right" ng-click="addReview()">Add a Review</button>
+                                <button class="btn-cat" id="align-right" ng-click="addReview()">Add a Review</button>
                                 <form ng-show= "addReviewClicked" name="userForm" ng-submit= "submitReview(review)">
                                     <div class="form-group">
                                         <textarea class="form-control" type="text" rows="3" name="review" ng-model="review.text" placeholder="meow" ng-minlength="50" required ></textarea>

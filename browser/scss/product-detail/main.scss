@@ -6,6 +6,12 @@
 	background-color: #DCDCDC;
 }
 
+.neatCat{
+	float: right;
+	margin-top: 200px;
+	opacity: 0.1;
+}
+
 .product_reviews{
 	margin-top: 10px;
 	margin-left: 0px;
@@ -25,6 +31,9 @@
     	font-weight: 100;
     	letter-spacing: 1.9px;
 	}
+	a {
+		text-decoration: none;
+	}
 }
 
 .reviewbox {
@@ -43,6 +52,30 @@
         height: 100%;
     }
     background: none;
+}
+
+.btn-cat {
+	background-color: white;
+	border: none;
+	color: #585858;
+	font-weight: 101;
+	letter-spacing: 1.9px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	&:hover {
+		background-color: #c6c6c6;
+	}
+}
+
+.btn-default {
+	border: none;
+	background-color: #e6e6e6;
+	color: #848484;
+	font-weight: 100;
+	letter-spacing: 1.9px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	&:hover {
+		background-color: #c6c6c6;
+	}
 }
 
 #align-right{
