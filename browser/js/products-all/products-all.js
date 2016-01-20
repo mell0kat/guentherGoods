@@ -38,7 +38,8 @@ app.config(function($stateProvider) {
         templateUrl: 'js/products-all/products-search.html',
         controller: function($scope, products, $stateParams) {
             $scope.matchedProducts = products.filter(function(item){
-                return (item.name.match($stateParams.searchQuery) || item.description.match($stateParams.searchQuery))
+                var tags = item.tags.toString();
+                return (item.name.match($stateParams.searchQuery) || item.description.match($stateParams.searchQuery) || tags.match($stateParams.searchQuery) )
             });
         },
         resolve: {
@@ -48,3 +49,19 @@ app.config(function($stateProvider) {
         }
     });
 });
+
+// app.config(function($stateProvider) {
+//     $stateProvider.state('similar', {
+//         url:'/products/similar/:id',
+//         templateUrl: 'js/products-all/products-search.html',
+//         controller: function($scope, products, $stateParams) {
+//             console.log("in the")
+//             $scope.matchedProducts = products;
+//         },
+//         resolve: {
+//             products: function($http, ProductsFactory, $stateParams) {
+//                 return ProductsFactory.findSimilar($stateParams.id);
+//             }
+//         }
+//     });
+// });

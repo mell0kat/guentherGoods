@@ -48,8 +48,11 @@
 
 #productPhoto  {
     height: 550px;
+
     img {
         height: 100%;
+        display: block;
+    	margin: auto;
     }
     background: none;
 }
