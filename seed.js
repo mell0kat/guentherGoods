@@ -26,8 +26,30 @@ var Category = Promise.promisifyAll(mongoose.model('Category'));
 var Product = Promise.promisifyAll(mongoose.model('Product'));
 var Review = Promise.promisifyAll(mongoose.model('Review'));
 var ShoppingCart = Promise.promisifyAll(mongoose.model('ShoppingCart'));
+var Address = Promise.promisifyAll(mongoose.model('Address'));
 
+var seedAddresses = function() {
 
+    var addresses =[
+    {
+        street1: '5 Hanover Square',
+        street2: 'Floor 25',
+        city: 'New York',
+        state: 'NY',
+        zip: '10004',
+        country: 'USA'
+    },
+    {
+        street1: '624 Foxgate Quarter',
+        city: 'Chesapeake',
+        state: 'VA',
+        zip: '23322',
+        country: 'USA'
+    }
+    ];
+    return Address.createAsync(addresses);
+
+}
 var seedUsers = function () {
 
     var users = [
@@ -39,8 +61,7 @@ var seedUsers = function () {
         {
             email: 'obama@gmail.com',
             password: 'potus',
-            name: 'You know me',
-            address: '5 Hanover Square New York, NY 10005'
+            name: 'You know me'
         },
         {
             email: 'hello@gmail.com',
@@ -97,7 +118,13 @@ var seedUsers = function () {
             name: "Michelle",
             isAdmin: true,
             isSeller: true,
-            address: '22 Whitehouse Ave. D.C.'
+            address: { street1: '5 Hanover Square',
+                    street2: 'Floor 25',
+                    city: 'New York',
+                    state: 'NY',
+                    zip: '10004',
+                    country: 'USA'
+                    }
         }
     ];
     return User.createAsync(users);
@@ -208,7 +235,24 @@ var seedCategory = function() {
     return Category.createAsync(category);
 }
 
-connectToDb.then(function () {
+connectToDb
+.then(function () {
+    return Address.findAsync({}).then(function (addresses) {
+        if (addresses.length === 0) {
+            return seedAddresses();
+        } else {
+            console.log(chalk.magenta('Seems to already be address data!'));
+        }
+    })
+    .then(function () {
+        console.log(chalk.green('Seeding addresses successful!'));
+        // process.kill(0);
+    }).catch(function (err) {
+        console.error(err, 'you have an error');
+        process.kill(1);
+    })
+})
+.then(function () {
     return User.findAsync({}).then(function (users) {
         if (users.length === 0) {
             return seedUsers();

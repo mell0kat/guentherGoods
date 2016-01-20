@@ -12,7 +12,12 @@ var orderSchema = new mongoose.Schema({
         default: Date.now
     },
     address: {
-        type: String
+                    street1: {type: String},
+                    street2: {type: String},
+                    city: {type: String},
+                    state: {type: String},
+                    zip: {type: String},
+                    country: {type: String}
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,

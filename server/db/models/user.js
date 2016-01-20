@@ -48,8 +48,13 @@ var UserSchema = new Schema({
     history: [{ type: Schema.Types.ObjectId, ref: 'Order'}],
     // TODO [time permitting] - History, Wishlist prop., Inbox
     sellerProfile: SellerProfile,
-    address: String
-
+    address: { street1: {type: String},
+            street2: {type: String},
+            city: {type: String},
+            state: {type: String},
+            zip: {type: String},
+            country: {type: String}
+            }
 });
 
 UserSchema.plugin(deepPopulate);
