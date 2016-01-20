@@ -22,7 +22,13 @@
         sessionTimeout: 'auth-session-timeout',
         notAuthenticated: 'auth-not-authenticated',
         notAuthorized: 'auth-not-authorized'
-    });
+    })
+    .constant('USER_ROLES', {
+        all: '*',
+        admin: 'admin',
+        seller: 'seller',
+        guest: 'guest'
+    })
 
     app.factory('AuthInterceptor', function ($rootScope, $q, AUTH_EVENTS) {
         var statusDict = {
