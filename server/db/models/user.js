@@ -4,13 +4,10 @@ var Schema = mongoose.Schema;
 var _ = require('lodash');
 var Product = require('./product');
 //var Shopp require('./shoppingcart');
-<<<<<<< HEAD
-var ShoppingCartSchema = require('./shoppingcart').cart;
 var deepPopulate = require('mongoose-deep-populate')(mongoose);
-=======
+
 var ShoppingCartSchema = require('./shoppingcart').cart,
     ProductSchema = require('./product').product;
->>>>>>> master
 
 var SellerProfile = new Schema({
     products: [{ type: Schema.Types.ObjectId, ref: 'Product'}],
