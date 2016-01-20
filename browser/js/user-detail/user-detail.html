@@ -1,12 +1,14 @@
 <div class="container">
+    <a href="/userlist">Go back to user list</a>
     <h2>{{user.name}}</h2>
     <div class="row">
         <div id="userSummary" class="col-xs-6">
-            <p>{{user.name}} - {{user.email}}</p>
+            <p><a editable-text="user.name" onbeforesave="updateUser('name', $data)">{{user.name}}</a></p>
+            <p><a editable-text="user.email" onbeforesave="updateUser('email', $data)">{{user.email}}</a></p>
             <p>Account type:</p>
             <ul>
-                <li>isSeller?: {{user.isSeller}}</li>
-                <li>isAdmin?: {{user.isAdmin}}</li>
+                <li>isSeller?: <a editable-select="user.isSeller" e-ng-options="b.value as b.text for b in bool"onbeforesave="updateUser('isSeller', $data)"> {{user.isSeller}}</a></li>
+                <li>isAdmin?: <a editable-select="user.isAdmin" e-ng-options="b.value as b.text for b in bool"onbeforesave="updateUser('isAdmin', $data)"> {{user.isAdmin}}</a></li>
             </ul>
             <p>Cart contents:</p>
             <ul ng-repeat="item in user.shoppingCart">

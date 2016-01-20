@@ -1,6 +1,7 @@
 <div class="container">
-    
+    <a ng-show="user.isAdmin || (user.isSeller && user._id === product.seller)" ng-click="editProd(product._id)">Edit this product</a>
     <div class="productTitle"><button class="btn" ng-click="goBack()">back to products</button><h2>{{product.name}}</h2></div>
+
     <div class="row">
         <div class="col-xs-6" id="productPhoto"><img src="{{product.photo}}"/></div>
         <div id="productSummary" class="col-xs-6">
@@ -13,7 +14,7 @@
                 <div id="description" ng-show="choice!=='reviews'">
                     <div class="description">{{product.price | currency }}</br></br>
                         <label>Description:</label></br>{{product.description}}</br></br>
-                        
+
                             <div class="form-group">
                                 <label>Quantity</label>
                                 <input type="number" class="input-quantity" ng-model="order.quantity"></input>
@@ -27,15 +28,14 @@
                                     <option>M</option>
                                     <option>L</option>
                                 </select>
-                            </div> 
-                            <button ng-show="product.quantity === 0">Out of stock</button>  
+                            </div>
+                            <button ng-show="product.quantity === 0">Out of stock</button>
                             <button ng-show="product.quantity > 0" ng-click="addToCart(order)" class="btn btn-default">Add to Cart</button>
-                    </div> 
-                </div>       
-                           
+                    </div>
+                </div>
 
                             <div class="product_reviews" ng-show="choice==='reviews'">
-                                
+
                                 <div ng-show="!product.reviews">No reviews yet, why not share yours?</div>
                                 <button class="btn btn-default" id="align-right" ng-click="addReview()">Add a Review</button>
                                 <form ng-show= "addReviewClicked" name="userForm" ng-submit= "submitReview(review)">
@@ -57,20 +57,20 @@
                                             <label class="radio-inline">
                                                 <input ng-model="review.stars" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="5"> 5
                                             </label>
-                                        </div>   
+                                        </div>
                                         <button type="submit" id="submit" value="Submit">Submit</button>
-                                        
+
                                     </div>
                                 </form>
 
                                 <span ng-show="userForm.review.$error.minlength && userForm.review.$touched">Your review must be at least 50 chars</span>
                                 <div ng-repeat="review in product.reviews | orderBy: '-date'">
-                                    <div class="reviewbox"><strong>{{user.email}}</strong>&emsp;&emsp;{{review.date | date:'MMMM d, y'}}&emsp;&emsp; stars:{{review.stars}}</br>
+                                    <div class="reviewbox"><strong>{{review.user.email}}</strong>&emsp;&emsp;{{review.date | date:'MMMM d, y'}}&emsp;&emsp; stars:{{review.stars}}</br>
                                     {{review.text}}
                                     </div>
                                 </div>
                             </div>
-                
+
            <!--  </div> -->
         </div>
     </div>

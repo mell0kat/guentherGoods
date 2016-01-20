@@ -1,6 +1,8 @@
 'use strict';
 
 var mongoose = require('mongoose');
+var User = mongoose.model('User');
+var Product = mongoose.model('Product')
 
 var reviewSchema = new mongoose.Schema({
     text:  {

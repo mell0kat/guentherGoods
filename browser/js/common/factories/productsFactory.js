@@ -30,6 +30,11 @@ app.factory('ProductsFactory', function ($http) {
         })
     };
 
+    ProductsFactory.updateOne = function(product) {
+        return $http.put('/api/products/'+product._id, product)
+        .then(response => response.data)
+    };
+
     ProductsFactory.fetchCategories = function() {
         return $http.get('/api/products/categories')
         .then(function(response){

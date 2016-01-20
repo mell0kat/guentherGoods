@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row">
+        <div class="col col-xs-12 header">
+            <h1>Your Orders</h1>
+        </div>
+        <div ng-repeat="order in user.history">
+            <ul>
+                <li>{{order}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-xs-12 header">
+            <h1>Your Reviews</h1>
+        </div>
+        <div ng-repeat="review in user.reviews">
+            <ul>
+                <li>{{review}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-xs-12 header">
+            <h1>Seller Console</h1>
+        </div>
+        <div>
+            <h3>Your Products</h3>
+            <ul ng-repeat="product in user.SellerProfile.products">
+                <li>{{product}}</li>
+            </ul>
+            <button class="btn" ng-click="goToAddProducts()">Add Products</button>
+        </div>
+    </div>
+    <div class="row" ng-show="user.isAdmin">
+        <div class="col col-xs-12 header">
+            <h1>Admin Console</h1>
+        </div>
+        <div>
+            <button class="btn" ng-click="goToUsers()">See/edit Users</button>
+            <button class="btn" ng-click="goToProducts()">See/edit Products</button>
+            <br>
+            <button class="btn" ng-click="goToAddUsers()">Add Users</button>
+            <button class="btn" ng-click="goToAddProducts()">Add Products</button>
+        </div>
+    </div>
+</div>
