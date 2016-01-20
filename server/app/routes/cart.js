@@ -1,7 +1,7 @@
 'use strict';
 var router = require('express').Router();
 var mongoose = require('mongoose');
-var ShoppingCart = mongoose.model('ShoppingCart')
+var ShoppingCart = mongoose.model('ShoppingCart');
 module.exports = router;
 
 

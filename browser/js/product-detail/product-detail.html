@@ -14,6 +14,7 @@
                 <div id="description" ng-show="choice!=='reviews'">
                     <div class="description">{{product.price | currency }}</br></br>
                         <label>Description:</label></br>{{product.description}}</br></br>
+                        <p>PRODUCTTTTT: {{product}}</p>
                             <div class="form-group">
                                 <label>Quantity</label>
                                 <input type="number" class="input-quantity" ng-model="order.quantity"></input>
@@ -29,10 +30,9 @@
                                 </select>
                             </div>
                             <button ng-show="product.quantity === 0">Out of stock</button>
-                            <button ng-show="product.quantity > 0" ng-click="addToCart(shoppingCart, order)" class="btn btn-default">Add to Cart</button>
+                            <button ng-show="product.quantity > 0" ng-click="addToCart(order)" class="btn btn-default">Add to Cart</button>
                     </div>
                 </div>
-
 
                             <div class="product_reviews" ng-show="choice==='reviews'">
 
