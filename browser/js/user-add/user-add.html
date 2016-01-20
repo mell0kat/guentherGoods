@@ -1,0 +1,41 @@
+<div class="col-md-6 col-md-offset-3">
+    <h2>Add new Users</h2>
+    <alert type="danger" ng-show="error">
+        {{ error }}
+    </alert>
+    <form name="signupForm" id="signup-form" ng-submit="sendSignup(signup)">
+        <div class="form-group" ng-class="{ 'has-error': form.name.$dirty && form.name.$error.required }">
+            <label for="name">Name</label>
+            <input type="text" id="name" class="form-control" ng-model="signup.name" required />
+            <span ng-show="form.name.$dirty && form.name.$error.required" class="help-block">Name is required</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
+            <label for="email">Email</label>
+            <input type="text" id="email" class="form-control" ng-model="signup.email" required />
+            <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Email is required</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+            <label for="password">Password</label>
+            <input type="password" id="password" class="form-control" ng-model="signup.password" required />
+            <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.isSeller.$dirty && form.isSeller.$error.required }">
+            <label for="isSeller">isSeller</label>
+            <select type="select" id="isSeller" class="form-control" ng-model="signup.isSeller" required>
+                <option value="true">true</option>
+                <option value="false">false</option>
+            </select>
+            <span ng-show="form.isSeller.$dirty && form.isSeller.$error.required" class="help-block">isSeller is required</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.isAdmin.$dirty && form.isAdmin.$error.required }">
+            <label for="isAdmin">isAdmin</label>
+            <select type="select" id="isAdmin" class="form-control" ng-model="signup.isAdmin" required>
+                <option value="true">true</option>
+                <option value="false">false</option>
+            </select>
+            <span ng-show="form.isAdmin.$dirty && form.isAdmin.$error.required" class="help-block">isAdmin is required</span>
+        </div>
+        <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Register</button>
+        <a href="/login" class="btn btn-link">Cancel</a>
+    </form>
+</div>

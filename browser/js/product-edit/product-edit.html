@@ -1,0 +1,33 @@
+
+<div id="productCreateForm">
+
+  <form novalidate class="simple-form" name="addAProduct">
+    <div class="formRow3"><h2>Edit your product.</h2></div>
+    <div class="formRow">
+      <div class="formRow"></div>
+      <label>Name: </label><input type="text" class="inputBox" ng-model="product.name" />
+    </div>
+    <div class="formRow">
+      <label>Price: </label><input type="number" class="inputBox" ng-model="product.price" />
+    </div>
+    <div class="formRow">
+      <label>Description: </label><input type="text" class="inputBox" ng-model="product.description"/>
+    </div>
+    <div class="formRow">
+      <label>Tags: </label><input type="text" class="inputBox" ng-model="product.tags" placeholder="Enter tags separated by a comma." />
+    </div>
+    <div class="formRow">
+      <label>Quantity:</label><input type="number" class="inputBox" ng-model="product.quantity" placeholder="Number available"/>
+    </div>
+    <div class="formRow">
+      <label>Category:</label><select ng-model = "product.category" class="inputBox" ng-options="category as category.name for category in categories" ng-model="selected"></select>
+    </div>
+    <div class="formRow">
+      <label>Image Url</label><input type="text" class="inputBox"placeholder="please enter a valid url" ng-model="product.photo"/>
+    </div>
+    <div class="formRow2">
+    <button class="btn btn-default" type="reset" ng-click="updateOne(product)">Submit</button></div><h2>{{message}}</h2>
+
+  </form>
+</div>
+
