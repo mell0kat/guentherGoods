@@ -40,13 +40,19 @@ router.get('/:productId', function(req, res, next) {
     });
 });
 
+router.get('/seller/:sellerId', function(req, res, next) {
+    Product.find({seller: req.params.sellerId})
+    .then(products => res.json(products));
+})
+
 router.post('/', function(req, res, next) {
     Product.create(req.body)
     .then( createdProduct => {
         if (createdProduct.seller) {
             User.findById(createdProduct.seller._id)
             .then(function(foundUser){
-                foundUser.sellerProfile.products.push(createdProduct._id);
+                foundUser.sellerProfile.push(createdProduct._id);
+                foundUser.save();
             })
         }
         res.status(201).json(createdProduct)
