@@ -6,12 +6,12 @@ var mongoose = require('mongoose');
 var productSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true,
-        unique: true
+        //required: true,
+        //unique: true
     },
     price: {
         type: Number,
-        required: true
+        //required: true
     },
     category: {
         type: mongoose.Schema.Types.ObjectId,
@@ -19,7 +19,7 @@ var productSchema = new mongoose.Schema({
     },
     description: {
         type: String,
-        required: true
+        //required: true
     },
     photo: {
         type: String,
@@ -27,7 +27,7 @@ var productSchema = new mongoose.Schema({
     },
     quantity: {
         type: Number,
-        required:true
+        //required:true
     },
     tags: {
         type: [String],
@@ -79,3 +79,4 @@ productSchema.methods.findSimilar = function() {
 // add method for updating inventory when user checks out
 
 mongoose.model('Product', productSchema);
+module.exports = { product: productSchema};

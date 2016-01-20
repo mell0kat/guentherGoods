@@ -1,6 +1,8 @@
 'use strict';
 
 var mongoose = require('mongoose');
+var productSchema = require('./product').product;
+
 
 var cartSchema = new mongoose.Schema({
     items: [{
@@ -11,13 +13,9 @@ var cartSchema = new mongoose.Schema({
         purchasePrice: {
             type: Number //not used until an order is processed.
         },
-        item: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Product'
-        }
+        item: productSchema
     }]
 });
-
 
 cartSchema.methods.addToCart = function(item) {
     this.items.push(item);
@@ -49,4 +47,4 @@ cartSchema.virtual('totalPrice').get(function() {
 
 // need methods for updating inventory upon adding items
 mongoose.model('ShoppingCart', cartSchema);
-module.exports = { cart: cartSchema }
+module.exports = { cart: cartSchema };

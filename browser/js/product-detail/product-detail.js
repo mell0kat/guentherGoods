@@ -4,12 +4,11 @@ app.config(function($stateProvider) {
         templateUrl: 'js/product-detail/product-detail.html',
         controller: function($scope, $rootScope, product, user, $window, ReviewsFactory, ShoppingCartFactory) {
             $scope.product = product;
-
             $scope.shoppingCart = user.shoppingCart;
             $scope.user = user;
             $scope.order = {
                     quantity: 1,
-                    item: product._id
+                    item: product
             };
             $scope.order.quantity = 1; //this will give a "default" value
             $scope.goBack = function(){
